@@ -42,6 +42,7 @@ public class Apparel {
         this.description = description;
         inWash = false;
         wear = 0;
+        id = getNextId();
     }
 
     public Long getId() {
