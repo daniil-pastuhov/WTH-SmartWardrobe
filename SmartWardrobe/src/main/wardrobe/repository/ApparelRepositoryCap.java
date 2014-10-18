@@ -82,8 +82,11 @@ public class ApparelRepositoryCap implements ApparelRepository {
         }
         if (catalog.containsKey(app.getCategory()))
             catalog.get(app.getCategory()).add(app);
-        else
-            catalog.put(app.getCategory(), Arrays.asList(app));
+        else {
+            List<Apparel> list = new ArrayList<Apparel>();
+            list.add(app);
+            catalog.put(app.getCategory(), list);
+        }
 
     }
 
