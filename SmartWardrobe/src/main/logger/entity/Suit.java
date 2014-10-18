@@ -17,5 +17,15 @@ public class Suit {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
+    public long getApparelId() {
+        return apparelId;
+    }
+
+    public void setApparelId(long apparelId) {
+        this.apparelId = apparelId;
+    }
 }

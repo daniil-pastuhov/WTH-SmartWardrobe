@@ -32,4 +32,15 @@ public class SuitRepositoryCap implements SuitRepository {
         }
         return res;
     }
+
+    @Override
+    public Integer countSuits(Long appId) {
+        int res = 0;
+        for (Suit s: cap) {
+            if (s.getApparelId() == appId) {
+                res++;
+            }
+        }
+        return res;
+    }
 }

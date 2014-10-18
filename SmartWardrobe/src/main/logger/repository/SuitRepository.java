@@ -12,4 +12,5 @@ public interface SuitRepository {
     void save(Suit entity);
     List<Suit> getSuits();
     List<Suit> getSuitById(Long id);
+    Integer countSuits(Long appId);
 }
