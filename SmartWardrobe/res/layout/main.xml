@@ -2,18 +2,37 @@
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
          android:layout_width="fill_parent"
          android:layout_height="fill_parent"
+        android:background="@drawable/background"
+
          android:id="@android:id/tabhost">
 
     <LinearLayout
             android:id="@+id/LinearLayout01"
             android:orientation="vertical"
+            android:background="@drawable/background"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent">
         <TextView
-                android:id="@+id/tvWeather"
+
+
+            android:id="@+id/baroque_script_sample"
                 android:layout_width="wrap_content"
-                android:textSize="20sp"
-                android:layout_height="wrap_content"/>
+            android:textSize="48sp"
+            android:shadowColor="#8B0000"
+            android:shadowDx="3"
+            android:shadowDy="-3"
+            android:shadowRadius="3"
+            android:textColor="#B22222"
+            android:layout_height="wrap_content"
+
+
+
+
+            android:text="Baroque Script Font"
+
+
+
+            />
         <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_height="wrap_content"
