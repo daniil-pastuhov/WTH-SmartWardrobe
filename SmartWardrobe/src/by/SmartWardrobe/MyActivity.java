@@ -5,24 +5,24 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TextView;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 import by.idea.SmartWardrobe.R;
 import main.constants.Category;
 import main.wardrobe.entity.Apparel;
 import main.wardrobe.service.WardrobeManager;
 
+import java.io.*;
+
 public class MyActivity extends TabActivity {
     /**
      * Called when the activity is first created.
      */
+    final String DIR_SD = ".Apparel";
     final String FILENAMETAG = "deficon";
     final String FILENAME = "basa";
     TextView tvWeather;
@@ -30,7 +30,7 @@ public class MyActivity extends TabActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        writeFileSD();
         setContentView(by.idea.SmartWardrobe.R.layout.main);
         tvWeather = (TextView) findViewById(by.idea.SmartWardrobe.R.id.tvWeather);
         FetchWeatherTask weatherTask = new FetchWeatherTask(this, tvWeather);
@@ -111,6 +111,30 @@ public class MyActivity extends TabActivity {
             os.close();
         } catch (IOException e) {
 
+        }
+    }
+    void writeFileSD() {
+        if (!Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED)) {
+            return;
+        }
+        // получаем путь к SD
+        File sdPath = Environment.getExternalStorageDirectory();
+        // добавляем свой каталог к пути
+        sdPath = new File(sdPath.getAbsolutePath() + "/" + DIR_SD);
+        // создаем каталог
+        sdPath.mkdirs();
+        // формируем объект File, который содержит путь к файлу
+        File sdFile = new File(sdPath, FILENAMETAG);
+        try {
+            // открываем поток для записи
+            ObjectOutputStream bw = new ObjectOutputStream(new FileOutputStream(sdFile));
+            // пишем данные
+            bw.writeObject(BitmapFactory.decodeResource(getResources(), R.drawable.ex));
+            // закрываем поток
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

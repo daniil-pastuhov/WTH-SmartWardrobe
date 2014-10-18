@@ -8,6 +8,7 @@ import android.widget.*;
 import by.idea.SmartWardrobe.R;
 import main.constants.Category;
 import main.wardrobe.entity.Apparel;
+import main.wardrobe.service.WardrobeManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,20 +43,10 @@ public class Tab1Activity  extends Activity
         list.setAdapter(listviewadapter);
         list.setChoiceMode(ListView.CHOICE_MODE_NONE);
        //TODO вставить всевозможные варианты
-        final ArrayList<String> arr1 = new ArrayList<String>() {{
-            add("Вариант 1");
-            add("Вариант 2");
-            add("Вариант 3");
-        }};
+         final List<String> arr1 = WardrobeManager.getInstance().getTargetCategories();
         final Spinner sp1 = (Spinner) findViewById(R.id.spinner);
-        Spinner sp2 = (Spinner) findViewById(R.id.spinner2);
-        Spinner sp3 = (Spinner) findViewById(R.id.spinner3);
         final SpinnerAdapter spAdapter1 = new ArrayAdapter<String>(this, R.layout.list_item_category, arr1);
-        SpinnerAdapter spAdapter2 = new ArrayAdapter<String>(this, R.layout.list_item_category, arr1);
-        SpinnerAdapter spAdapter3 = new ArrayAdapter<String>(this, R.layout.list_item_category, arr1);
         sp1.setAdapter(spAdapter1);
-        sp2.setAdapter(spAdapter2);
-        sp3.setAdapter(spAdapter3);
         Button btnChange = (Button) findViewById(R.id.btnChange);
         btnChange.setOnClickListener(new View.OnClickListener() {
             @Override
