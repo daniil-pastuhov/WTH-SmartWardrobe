@@ -33,7 +33,6 @@ public class WardrobeManager {
         return repository.getById(id);
     }
 
-
     public List<Apparel> getDirty() {
         return repository.getDirty();
     }
