@@ -2,6 +2,11 @@ package by.SmartWardrobe.wardrobe;
 
 import by.idea.SmartWardrobe.R;
 
+/**
+ * @deprecated {@link main.entity.Apparel}
+ */
+
+@Deprecated
 public class Apparel {
     public Apparel (int flag, String rank, String country,
                     String population) {
