@@ -25,8 +25,7 @@
     <string name="namelabel">"Название: "</string>
     <string name="materiallabel">"Материал: "</string>
     <string name="firstlabel">"Куда идём: "</string>
-    <string name="secondlabel">"Какой цвет: "</string>
-    <string name="thirdlabel">"Стиль: "</string>
+    <string name="secondlabel">"Метки: "</string>
     <string name="washinglabel">"Дата последней стирки: "</string>
     <string name="wash">В стирку</string>
     <string name="add_item">Добавить вещь</string>
