@@ -47,11 +47,11 @@ public class WardrobeManager {
         return repository.getDirty();
     }
 
-    void addApparel(Apparel app) {
+    public void addApparel(Apparel app) {
         repository.addApparel(app);
     }
 
-    void deleteApparel(Apparel app) {
+    public void deleteApparel(Apparel app) {
         repository.deleteApparel(app);
     }
 
