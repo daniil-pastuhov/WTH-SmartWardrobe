@@ -10,6 +10,9 @@ import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TextView;
 import by.idea.SmartWardrobe.R;
+import main.constants.Category;
+import main.wardrobe.entity.Apparel;
+import main.wardrobe.service.WardrobeManager;
 
 public class MyActivity extends TabActivity {
     /**
@@ -28,10 +31,10 @@ public class MyActivity extends TabActivity {
         //TODO delete inicializer
         Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ex);
 
-//        for (int i = 0; i < 5; i++) {
-//            WardrobeManager.getInstance().addApparel(new Apparel("...", myBitmap, Category.SHIRT, 0, "..." ));
-//
-//        }
+        for (int i = 0; i < 5; i++) {
+            WardrobeManager.getInstance().addApparel(new Apparel("...", myBitmap, Category.SHIRT, 0, "..." ));
+
+        }
 
         TabHost.TabSpec tab1 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_auto_find));
         TabHost.TabSpec tab2 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_catalog));
