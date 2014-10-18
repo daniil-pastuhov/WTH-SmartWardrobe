@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Category {
-	DRESS("������"), TROUSERS("�����"), SHIRT("�������"), TSHIRTS("�����"), SWEATER(
-			"�������"), ACCESSORIES("����������");
+	DRESS("Платья"), TROUSERS("�����"), SHIRT("�������"), TSHIRTS("�����"), SWEATER(
+			"�������"), ACCESSORIES("����������"), OTHER("Другое");
 
 	private String type;
 
