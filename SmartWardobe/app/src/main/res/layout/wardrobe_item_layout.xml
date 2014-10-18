@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wardrobe_list_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="15dp">
+
+    <ImageView
+        android:id="@+id/wardrobe_list_item_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/wardrobe_list_item_photo">
+
+        <TextView
+            android:id="@+id/wardrobe_list_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
+        <TextView
+            android:id="@+id/wardrobe_list_item_material"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
+
+        <TextView
+            android:id="@+id/wardrobe_list_item_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
+
+
+        <TextView
+            android:id="@+id/wardrobe_list_item_washing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
+
+        </LinearLayout>
+
+</RelativeLayout>
