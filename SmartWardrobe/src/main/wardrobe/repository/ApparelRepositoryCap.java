@@ -3,12 +3,14 @@ package main.wardrobe.repository;
 import main.constants.Category;
 import main.wardrobe.entity.Apparel;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by TDiva on 18.10.2014.
  */
-public class ApparelRepositoryCap implements ApparelRepository {
+
+public class ApparelRepositoryCap implements ApparelRepository, Serializable {
 
     public static final Integer WEAR_LEVEL = 5;
 

@@ -9,13 +9,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import by.idea.SmartWardrobe.R;
 import main.constants.Category;
 import main.wardrobe.entity.Apparel;
 import main.wardrobe.service.WardrobeManager;
-
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 public class MyActivity extends TabActivity {
     /**
@@ -24,6 +26,7 @@ public class MyActivity extends TabActivity {
     final String FILENAMETAG = "deficon";
     final String FILENAME = "basa";
     TextView tvWeather;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,20 +35,19 @@ public class MyActivity extends TabActivity {
         tvWeather = (TextView) findViewById(by.idea.SmartWardrobe.R.id.tvWeather);
         FetchWeatherTask weatherTask = new FetchWeatherTask(this, tvWeather);
         weatherTask.execute("Minsk", "metric");
-        TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
+        TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
         try {
-            ObjectOutputStream os = new ObjectOutputStream(openFileOutput(FILENAMETAG, MODE_PRIVATE));
-            os.writeObject(BitmapFactory.decodeResource(getResources(), R.drawable.ex));
-            os.close();
-        }
-        catch (IOException e) {
+            ObjectInputStream is = new ObjectInputStream(openFileInput(FILENAME));
+            WardrobeManager.loadFromFile(is);
+            is.close();
+        } catch (IOException e) {
 
         }
         //TODO delete inicializer
         Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ex);
 
         for (int i = 0; i < 5; i++) {
-            WardrobeManager.getInstance().addApparel(new Apparel("...", myBitmap, Category.SHIRT, 0, "..." ));
+            WardrobeManager.getInstance().addApparel(new Apparel("...", myBitmap, Category.SHIRT, 0, "..."));
 
         }
 
@@ -58,19 +60,19 @@ public class MyActivity extends TabActivity {
         // Set the Tab name and Activity
         // that will be opened when particular Tab will be selected
         tab1.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_auto_find));
-        tab1.setContent(new Intent(this,Tab1Activity.class));
+        tab1.setContent(new Intent(this, Tab1Activity.class));
 
         tab2.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_catalog));
-        tab2.setContent(new Intent(this,Tab2Activity.class));
+        tab2.setContent(new Intent(this, Tab2Activity.class));
 
         tab3.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_find_by_teg));
-        tab3.setContent(new Intent(this,Tab3Activity.class));
+        tab3.setContent(new Intent(this, Tab3Activity.class));
 
         tab4.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_find_to_wash));
-        tab4.setContent(new Intent(this,Tab4Activity.class));
+        tab4.setContent(new Intent(this, Tab4Activity.class));
 
         tab5.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_pack_to_trip));
-        tab5.setContent(new Intent(this,Tab5Activity.class));
+        tab5.setContent(new Intent(this, Tab5Activity.class));
 
         tabHost.addTab(tab1);
         tabHost.addTab(tab2);
@@ -99,5 +101,16 @@ public class MyActivity extends TabActivity {
     public void onAddClick() {
         Intent intent = new Intent(getApplicationContext(), AddingActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onDestroy() {
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(openFileOutput(FILENAME, MODE_PRIVATE));
+            WardrobeManager.saveToFile(os);
+            os.close();
+        } catch (IOException e) {
+
+        }
     }
 }

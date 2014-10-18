@@ -2,13 +2,15 @@ package main.wardrobe.entity;
 
 
 import android.graphics.Bitmap;
-import main.constants.Category;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Apparel {
+import main.constants.Category;
+
+public class Apparel implements Serializable {
 
     public static long idCounter = 0l;
     private static DateFormat df = new SimpleDateFormat("MMM dd, yyyy HH:mm");
@@ -19,8 +21,7 @@ public class Apparel {
     }
 
     private Long id;
-    private String name;
-    private Bitmap image;
+    private String imagePath;
     private Category category;
     private Boolean inWash;
     private Integer howWarm;
@@ -33,10 +34,13 @@ public class Apparel {
         this.id = id;
     }
 
+    @Deprecated
     public Apparel(String name, Bitmap image, Category category, Integer howWarm, String description) {
+    }
+
+    public Apparel(String imagePath, Category category, Integer howWarm, String description) {
+        this.imagePath = imagePath;
         this.howWarm = howWarm;
-        this.name = name;
-        this.image = image;
         this.category = category;
         this.description = description;
         inWash = false;
@@ -52,20 +56,12 @@ public class Apparel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Bitmap getImage() {
-        return image;
-    }
-
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public Category getCategory() {
