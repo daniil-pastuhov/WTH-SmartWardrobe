@@ -2,12 +2,11 @@ package main.wardrobe.entity;
 
 
 import android.graphics.Bitmap;
+import main.constants.Category;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import main.constants.Category;
 
 public class Apparel {
 
