@@ -16,7 +16,6 @@ public class ApparelRepositoryCap implements ApparelRepository {
     private List<Apparel> wash = new ArrayList<Apparel>();
     private List<Apparel> clothes = new ArrayList<Apparel>();
 
-
     @Override
     public List<Apparel> getAll() {
         return clothes;

@@ -15,7 +15,6 @@ public class Apparel {
     private static DateFormat df = new SimpleDateFormat("MMM dd, yyyy HH:mm");
 
 
-
     public static long getNextId() {
         return idCounter++;
     }
@@ -131,5 +130,17 @@ public class Apparel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Apparel)
+            return id.equals(((Apparel) o).id);
+        return false;
     }
 }
