@@ -1,20 +1,23 @@
 package by.SmartWardrobe;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-import by.SmartWardrobe.wardrobe.Apparel;
 import by.idea.SmartWardrobe.R;
+import main.constants.Category;
+import main.wardrobe.entity.Apparel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Tab1Activity  extends Activity
 {
     ListView list;
     ListViewAdapter listviewadapter;
-    List<Apparel> apprelList;
+    List<Apparel> apparelList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,34 +25,18 @@ public class Tab1Activity  extends Activity
 
         //TODO apprelList = getTodaySuit(s, k, g, b, n);
         //TODO delete this code below
-        apprelList = new ArrayList<Apparel>();
-        String[] name;
-        String[] material;
-        String[] washingDate;
-        int[] photo;
-        name = new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+        apparelList = Arrays.asList(
+                new Apparel("1", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
+                new Apparel("2", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
+                new Apparel("3", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
+                new Apparel("4", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc")
+        );
 
-        material = new String[] { "Хлопок", "Шёлк", "Лён",
-                "Шерсть", "Вискоза", "Хлопок", "Шёлк", "Лён",
-                "Шерсть", "Вискоза"};
-
-        washingDate = new String[] { "1,354,040,000", "1,210,193,422",
-                "315,761,000", "237,641,326", "193,946,886", "182,912,000",
-                "170,901,000", "152,518,015", "143,369,806", "127,360,000" };
-
-        photo = new int[] { R.drawable.ex, R.drawable.ex,R.drawable.ex,R.drawable.ex,R.drawable.ex,R.drawable.ex,R.drawable.ex,R.drawable.ex,R.drawable.ex,R.drawable.ex };
-
-        for (int i = 0; i < name.length; i++) {
-            Apparel apparel = new Apparel(photo[i],
-                    name[i], material[i], washingDate[i]);
-            apprelList.add(apparel);
-        }
-        //
         list = (ListView) findViewById(R.id.lvTodaySuit);
 
         // Pass results to ListViewAdapter Class
         listviewadapter = new ListViewAdapter(this, R.layout.listview_item,
-                apprelList);
+                apparelList);
 
         // Binds the Adapter to the ListView
         list.setAdapter(listviewadapter);

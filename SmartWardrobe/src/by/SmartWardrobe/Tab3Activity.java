@@ -7,8 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-import by.SmartWardrobe.wardrobe.Apparel;
 import by.idea.SmartWardrobe.R;
+import main.wardrobe.entity.Apparel;
 
 import java.util.ArrayList;
 import java.util.List;
