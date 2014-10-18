@@ -2,12 +2,17 @@ package by.SmartWardrobe;
 
 import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TextView;
 import by.idea.SmartWardrobe.R;
+import main.constants.Category;
+import main.wardrobe.entity.Apparel;
+import main.wardrobe.service.WardrobeManager;
 
 public class MyActivity extends TabActivity {
     /**
@@ -23,7 +28,13 @@ public class MyActivity extends TabActivity {
         FetchWeatherTask weatherTask = new FetchWeatherTask(this, tvWeather);
         weatherTask.execute("Minsk", "metric");
         TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
+        //TODO delete inicializer
+        Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ex);
 
+        for (int i = 0; i < 5; i++) {
+            WardrobeManager.getInstance().addApparel(new Apparel("...", myBitmap, Category.SHIRT, 0, "..." ));
+
+        }
 
         TabHost.TabSpec tab1 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_auto_find));
         TabHost.TabSpec tab2 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_catalog));

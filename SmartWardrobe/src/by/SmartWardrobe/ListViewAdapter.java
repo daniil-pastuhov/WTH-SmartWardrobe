@@ -11,9 +11,6 @@ import android.widget.TextView;
 import by.idea.SmartWardrobe.R;
 import main.wardrobe.entity.Apparel;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class ListViewAdapter extends ArrayAdapter<Apparel> {
