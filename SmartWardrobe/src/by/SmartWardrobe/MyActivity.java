@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
@@ -25,6 +24,7 @@ public class MyActivity extends TabActivity {
     final String DIR_SD = ".Apparel";
     final String FILENAMETAG = "deficon";
     final String FILENAME = "basa";
+    String experimentalPath = null;
     TextView tvWeather;
 
     @Override
@@ -47,7 +47,7 @@ public class MyActivity extends TabActivity {
         Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ex);
 
         for (int i = 0; i < 5; i++) {
-            WardrobeManager.getInstance().addApparel(new Apparel("...", myBitmap, Category.SHIRT, 0, "..."));
+            WardrobeManager.getInstance().addApparel(new Apparel(experimentalPath, Category.SHIRT, 0, "..."));
 
         }
 
@@ -126,6 +126,7 @@ public class MyActivity extends TabActivity {
         sdPath.mkdirs();
         // формируем объект File, который содержит путь к файлу
         File sdFile = new File(sdPath, FILENAMETAG);
+        experimentalPath = sdFile.getAbsolutePath();
         try {
             // открываем поток для записи
             ObjectOutputStream bw = new ObjectOutputStream(new FileOutputStream(sdFile));
