@@ -4,33 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Category {
-	DRESS("Платья"), TROUSERS("Брюки"), SHIRT("Рубашки"), TSHIRTS("Майки"), SWEATER(
-			"Свитера"), UNDERWEAR("Нижнее белье"), ACCESSORIES("Аксессуары");
+    DRESS("РџР»Р°С‚СЊСЏ"), TROUSERS("РЁС‚Р°РЅС‹"), SHIRT("Р СѓР±Р°С€РєРё"), TSHIRTS("Р¤СѓС‚Р±РѕРєРё"), SWEATER(
+            "РЎРІРёС‚РµСЂР°"), UNDERWEAR("РќРёР¶РЅРµРµ Р±РµР»СЊС‘"), ACCESSORIES("РђРєСЃРµСЃСЃСѓР°СЂС‹");
 
-	private String type;
+    private String type;
 
-	Category(String type) {
-		this.type = type;
-	}
+    Category(String type) {
+        this.type = type;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public static Category getByType(String type) {
-		for (Category c : values()) {
-			if (c.getType().equals(type))
-				return c;
-		}
-		return null;
-	}
+    public static Category getByType(String type) {
+        for (Category c : values()) {
+            if (c.getType().equals(type))
+                return c;
+        }
+        return null;
+    }
 
-	public static List<String> getCategories() {
-		List<String> res = new ArrayList<>();
-		for (Category c : values()) {
-			res.add(c.getType());
-		}
-		return res;
-	}
+    public static List<String> getCategories() {
+        List<String> res = new ArrayList<String>();
+        for (Category c : values()) {
+            res.add(c.getType());
+        }
+        return res;
+    }
 
 }

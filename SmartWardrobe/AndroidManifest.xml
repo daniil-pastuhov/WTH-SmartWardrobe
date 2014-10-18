@@ -1,17 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.totally.fun.smartwardrobe"
-    android:versionCode="1"
-    android:versionName="1.0" >
-
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
-
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+          package="by.idea.SmartWardrobe"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="14"/>
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+        <activity android:name="by.SmartWardrobe.MyActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="by.SmartWardrobe.Tab1Activity" android:label="Tab1Activity1"/>
+        <activity android:name="by.SmartWardrobe.Tab2Activity" android:label="Tab2Activity"/>
+        <activity android:name="by.SmartWardrobe.Tab3Activity" android:label="Tab3Activity"/>
+        <activity android:name="by.SmartWardrobe.Tab4Activity" android:label="Tab4Activity"/>
+        <activity android:name="by.SmartWardrobe.Tab5Activity" android:label="Tab5Activity"/>
+        <activity android:name="by.SmartWardrobe.DetailActivity" android:label="Apparel detail"/>
+        <activity android:name="by.SmartWardrobe.AddingActivity" android:label="Adding new apparel"/>
     </application>
-
+    <uses-feature android:name="android.hardware.Camera"
+                  android:required="true"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>
