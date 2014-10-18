@@ -17,6 +17,13 @@ public class Tags {
 		return tags.get(name);
 	}
 
+    public static Long getOrCreateTagId(String name) {
+        if (!containsTag(name)) {
+            addTag(name);
+        }
+        return tags.get(name);
+    }
+
 	public static boolean containsTag(String name) {
 		return tags.containsKey(name);
 	}

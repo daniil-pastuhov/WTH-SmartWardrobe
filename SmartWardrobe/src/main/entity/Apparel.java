@@ -43,7 +43,7 @@ public class Apparel {
 		this.lastWornDate = null;
 		this.tags = new HashSet<Long>();
 		for (String tag : tags) {
-			this.tags.add(Tags.getTagId(tag));
+			this.tags.add(Tags.getOrCreateTagId(tag));
 		}
 	}
 
