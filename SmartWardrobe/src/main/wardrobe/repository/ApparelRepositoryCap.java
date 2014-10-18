@@ -1,15 +1,9 @@
 package main.wardrobe.repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import main.constants.Category;
 import main.wardrobe.entity.Apparel;
+
+import java.util.*;
 
 /**
  * Created by TDiva on 18.10.2014.
