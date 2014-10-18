@@ -32,5 +32,12 @@
     <string name="add_item">Добавить вещь</string>
     <string name="delete_item">Удалить вещь</string>
     <string name="find_by_teg_label">Введите ключевые слова через запятую</string>
+    <string name="buttin_photo_add">Add...</string>
+    <string name="image_view_adding">Picture of the apparel.</string>
+    <string name="textView_name_add">Name:</string>
+    <string name="textView">Т ношения</string>
+    <string name="textView_descr_add">Описание:</string>
+    <string name="textView_minTemp_add">от</string>
+    <string name="textView_maxTemp_add">до</string>
 
 </resources>
