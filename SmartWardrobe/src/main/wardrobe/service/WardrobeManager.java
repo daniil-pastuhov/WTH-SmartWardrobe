@@ -34,11 +34,11 @@ public class WardrobeManager {
         }
     }
 
-    List<Apparel> getByCategory(String category) {
+    public List<Apparel> getByCategory(String category) {
         return repository.getByCategory(category);
     }
 
-    Apparel getById(Long id) {
+    public Apparel getById(Long id) {
         return repository.getById(id);
     }
 
