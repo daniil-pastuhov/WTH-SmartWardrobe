@@ -1,4 +1,4 @@
-package main.entity;
+package main.wardrobe.entity;
 
 import java.util.Date;
 import java.util.HashSet;

@@ -3,7 +3,7 @@ package main.logger;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.entity.Apparel;
+import main.wardrobe.entity.Apparel;
 import main.logger.service.SuitService;
 
 /**

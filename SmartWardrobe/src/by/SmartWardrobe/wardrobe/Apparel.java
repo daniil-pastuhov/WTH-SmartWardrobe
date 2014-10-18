@@ -3,7 +3,7 @@ package by.SmartWardrobe.wardrobe;
 import by.idea.SmartWardrobe.R;
 
 /**
- * @deprecated {@link main.entity.Apparel}
+ * @deprecated {@link main.wardrobe.entity.Apparel}
  */
 
 @Deprecated
