@@ -55,7 +55,7 @@ public class WardrobeManager {
         repository.deleteApparel(app);
     }
 
-    public List<Apparel> getTargetCategories() {
+    public List<String> getTargetCategories() {
         return repository.getTargetCategories();
     }
 }

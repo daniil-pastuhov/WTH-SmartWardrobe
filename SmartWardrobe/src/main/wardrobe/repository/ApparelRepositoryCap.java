@@ -105,7 +105,7 @@ public class ApparelRepositoryCap implements ApparelRepository {
     }
 
     @Override
-    public List<Apparel> getTargetCategories() {
+    public List<String> getTargetCategories() {
         return null;
     }
 }
