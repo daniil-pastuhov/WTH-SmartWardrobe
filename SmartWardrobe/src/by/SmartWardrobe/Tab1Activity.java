@@ -25,12 +25,12 @@ public class Tab1Activity  extends Activity
 
         //TODO apprelList = getTodaySuit(s, k, g, b, n);
         //TODO delete this code below
-        apparelList = Arrays.asList(
+        apparelList = new ArrayList<Apparel>(Arrays.asList(
                 new Apparel("1", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
                 new Apparel("2", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
                 new Apparel("3", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
                 new Apparel("4", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc")
-        );
+        ));
 
         list = (ListView) findViewById(R.id.lvTodaySuit);
 

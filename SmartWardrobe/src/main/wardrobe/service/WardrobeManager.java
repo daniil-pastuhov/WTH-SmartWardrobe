@@ -1,20 +1,12 @@
 package main.wardrobe.service;
 
-import java.util.Arrays;
-import java.util.List;
-
-import main.constants.Category;
 import main.wardrobe.entity.Apparel;
 import main.wardrobe.repository.ApparelRepository;
 import main.wardrobe.repository.ApparelRepositoryCap;
 
-public class WardrobeManager {
+import java.util.List;
 
-    private static List<Apparel> testList = Arrays.asList(
-            new Apparel("Ap1", null, Category.ACCESSORIES, 0, "desc"),
-            new Apparel("Ap2", null, Category.DRESS, 4, "desc"),
-            new Apparel("Ap3", null, Category.SHIRT, 1, "desc")
-    );
+public class WardrobeManager {
 
     private static WardrobeManager instance;
 
@@ -29,31 +21,37 @@ public class WardrobeManager {
 
     private WardrobeManager() {
         repository = new ApparelRepositoryCap();
-        for (Apparel ap: testList) {
-            repository.addApparel(ap);
-        }
     }
 
-    List<Apparel> getByCategory(String category) {
+    public List<Apparel> getAll() {
+        return repository.getAll();
+    }
+
+    public List<Apparel> getByCategory(String category) {
         return repository.getByCategory(category);
     }
 
-    Apparel getById(Long id) {
+    public Apparel getById(Long id) {
         return repository.getById(id);
     }
-
 
     public List<Apparel> getDirty() {
         return repository.getDirty();
     }
 
-    void addApparel(Apparel app) {
+    public List<Apparel> getInWash() {
+        return repository.getInWash();
+    }
+
+    public List<Apparel> getNotInWash() {
+        return repository.getNotInWash();
+    }
+
+    public void addApparel(Apparel app) {
         repository.addApparel(app);
     }
 
-    void deleteApparel(Apparel app) {
+    public void deleteApparel(Apparel app) {
         repository.deleteApparel(app);
     }
-
-
 }

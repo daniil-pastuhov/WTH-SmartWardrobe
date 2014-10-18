@@ -2,18 +2,16 @@ package main.wardrobe.entity;
 
 
 import android.graphics.Bitmap;
+import main.constants.Category;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import main.constants.Category;
-
 public class Apparel {
 
     public static long idCounter = 0l;
     private static DateFormat df = new SimpleDateFormat("MMM dd, yyyy HH:mm");
-
 
 
     public static long getNextId() {
@@ -43,6 +41,7 @@ public class Apparel {
         this.description = description;
         inWash = false;
         wear = 0;
+        id = getNextId();
     }
 
     public Long getId() {
@@ -131,5 +130,17 @@ public class Apparel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Apparel)
+            return id.equals(((Apparel) o).id);
+        return false;
     }
 }

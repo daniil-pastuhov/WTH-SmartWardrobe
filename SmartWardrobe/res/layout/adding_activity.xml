@@ -1,19 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<GridLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:columnCount="1"
+    android:rowCount="3"
+    android:alignmentMode="alignBounds"
+    android:columnOrderPreserved="true"
+    android:rowOrderPreserved="true">
 
-    <TextView
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:columnCount="2"
+        android:rowCount="2">
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/textView"/>
-    <TextView
+            android:id="@+id/imageViewAdd"
+            android:layout_column="0"
+            android:layout_columnSpan="1"
+            android:layout_row="0"
+            android:layout_rowSpan="2"
+            android:contentDescription="@string/image_view_adding" />
+
+        <Button
+            android:layout_width="123dp"
+            android:layout_height="63dp"
+            android:text="@string/buttin_photo_add"
+            android:id="@+id/btnPhotoAdd"
+            android:layout_column="1"
+            android:layout_row="0" />
+
+        <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView2"/>
-</LinearLayout>
+            android:id="@+id/spinnerCatAdd"
+            android:layout_column="1"
+            android:layout_row="1" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_row="1"
+        android:columnCount="2"
+        android:rowCount="3">
+
+        <TextView
+            android:layout_width="81dp"
+            android:layout_height="38dp"
+            android:text="@string/textView_name_add"
+            android:id="@+id/textViewNameAdd"
+            android:textSize="24sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextNameAdd"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:editable="false"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textView"
+            android:id="@+id/textViewWarmthAdd"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:textSize="24sp" />
+
+        <GridLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:columnCount="4"
+            android:rowCount="1"
+            android:id="@+id/gridTemp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textView_minTemp_add"
+                android:id="@+id/textViewMinTAdd"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:textSize="24sp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextMinTAdd"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textView_maxTemp_add"
+                android:id="@+id/textViewMaxTAdd"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:textSize="24sp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextMaxTAdd"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:inputType="text" />
+        </GridLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textView_descr_add"
+            android:id="@+id/textViewDescrAdd"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:textSize="24sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextDescrAdd"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:inputType="text" />
+    </GridLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_addToWardrobe"
+        android:id="@+id/buttonToWardrobeAdd"
+        android:layout_column="0"
+        android:layout_row="2"
+        android:textSize="24sp" />
+</GridLayout>
