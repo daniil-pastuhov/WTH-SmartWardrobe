@@ -29,9 +29,9 @@ public class AddingActivity extends Activity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    Bitmap imageBitmap;
+    //Bitmap imageBitmap;
 
-    String mCurrentPhotoPath;
+    String mCurrentPhotoPath = "...";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,11 @@ public class AddingActivity extends Activity {
                     }
                 }
 
+                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                File f = new File(mCurrentPhotoPath);
+                Uri contentUri = Uri.fromFile(f);
+                mediaScanIntent.setData(contentUri);
+                AddingActivity.this.sendBroadcast(mediaScanIntent);
             }
         });
 
@@ -100,9 +105,9 @@ public class AddingActivity extends Activity {
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
+                imageFileName,   /*prefix */
+                ".jpg",          /*suffix */
+                storageDir       /*directory*/
         );
 
         // Save a file: path for use with ACTION_VIEW intents
