@@ -4,6 +4,7 @@ import main.wardrobe.entity.Apparel;
 import main.wardrobe.repository.ApparelRepository;
 import main.wardrobe.repository.ApparelRepositoryCap;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WardrobeManager {
@@ -28,7 +29,7 @@ public class WardrobeManager {
     }
 
     public List<Apparel> getByCategory(String category) {
-        return repository.getByCategory(category);
+        return new ArrayList<Apparel>(repository.getByCategory(category));
     }
 
     public Apparel getById(Long id) {
