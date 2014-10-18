@@ -106,6 +106,12 @@ public class ApparelRepositoryCap implements ApparelRepository {
 
     @Override
     public List<String> getTargetCategories() {
-        return null;
+        //TODO FIX ME!!
+        ArrayList<String> ret = new ArrayList<String>() {{
+            add("Бал");
+            add("Спорт");
+            add("Дела");
+        }};
+        return ret;
     }
 }
