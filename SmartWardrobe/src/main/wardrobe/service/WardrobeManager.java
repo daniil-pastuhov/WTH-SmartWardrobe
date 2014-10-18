@@ -1,9 +1,7 @@
 package main.wardrobe.service;
 
-import java.util.Arrays;
 import java.util.List;
 
-import main.constants.Category;
 import main.wardrobe.entity.Apparel;
 import main.wardrobe.repository.ApparelRepository;
 import main.wardrobe.repository.ApparelRepositoryCap;
@@ -25,6 +23,10 @@ public class WardrobeManager {
         repository = new ApparelRepositoryCap();
     }
 
+    public List<Apparel> getAll() {
+        return repository.getAll();
+    }
+
     public List<Apparel> getByCategory(String category) {
         return repository.getByCategory(category);
     }
@@ -35,6 +37,10 @@ public class WardrobeManager {
 
     public List<Apparel> getDirty() {
         return repository.getDirty();
+    }
+
+    public List<Apparel> getNotDirty() {
+        return repository.getNotDirty();
     }
 
     public void addApparel(Apparel app) {
