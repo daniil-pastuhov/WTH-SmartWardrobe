@@ -13,7 +13,8 @@ public interface ApparelRepository {
     List<Apparel> getAll();
     List<Apparel> getByCategory(String category);
     List<Apparel> getDirty();
-    List<Apparel> getNotDirty();
+    List<Apparel> getNotInWash();
+    List<Apparel> getInWash();
     Apparel getById(Long id);
 
     void addApparel(Apparel app);

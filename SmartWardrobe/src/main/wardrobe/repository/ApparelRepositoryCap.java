@@ -16,6 +16,8 @@ import main.wardrobe.entity.Apparel;
  */
 public class ApparelRepositoryCap implements ApparelRepository {
 
+    public static final Integer WEAR_LEVEL = 5;
+
     private Map<Category, List<Apparel>> catalog = new HashMap<Category, List<Apparel>>();
     private List<Apparel> wash = new ArrayList<Apparel>();
     private List<Apparel> clothes = new ArrayList<Apparel>();
@@ -34,14 +36,31 @@ public class ApparelRepositoryCap implements ApparelRepository {
 
     @Override
     public List<Apparel> getDirty() {
-        return wash;
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel app : clothes) {
+            if (app.getWear() > WEAR_LEVEL) {
+                list.add(app);
+            }
+        }
+        Collections.sort(list, new Comparator<Apparel>() {
+            @Override
+            public int compare(Apparel apparel, Apparel apparel2) {
+                return apparel2.getWear() - apparel.getWear();
+            }
+        });
+        return list;
     }
 
     @Override
-    public List<Apparel> getNotDirty() {
+    public List<Apparel> getNotInWash() {
         List ret = (new ArrayList<Apparel>(clothes));
         ret.removeAll(wash);
         return ret;
+    }
+
+    @Override
+    public List<Apparel> getInWash() {
+        return wash;
     }
 
     @Override

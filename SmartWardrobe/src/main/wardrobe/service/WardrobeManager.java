@@ -39,8 +39,12 @@ public class WardrobeManager {
         return repository.getDirty();
     }
 
-    public List<Apparel> getNotDirty() {
-        return repository.getNotDirty();
+    public List<Apparel> getInWash() {
+        return repository.getInWash();
+    }
+
+    public List<Apparel> getNotInWash() {
+        return repository.getNotInWash();
     }
 
     public void addApparel(Apparel app) {
