@@ -19,10 +19,6 @@ public class Tab4Activity extends Activity {
     ListView list;
     ListViewAdapter listviewadapter;
     List<Apparel> apparelList = new ArrayList<Apparel>();
-    String[] name;
-    String[] material;
-    String[] washingDate;
-    int[] photo;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -68,8 +64,7 @@ public class Tab4Activity extends Activity {
                             if (selected.valueAt(i)) {
                                 Apparel selecteditem = listviewadapter
                                         .getItem(selected.keyAt(i));
-                                // Remove selected items following the ids
-                                //TODO пометить в шкафу, что его удалили!!!
+                                selecteditem.setInWash(true);
                                 listviewadapter.remove(selecteditem);
                             }
                         }
