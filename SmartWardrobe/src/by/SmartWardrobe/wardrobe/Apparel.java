@@ -15,10 +15,12 @@ public class Apparel {
         this.date = population;
         this.photo = flag;
     }
+
     private String name;
     private String material;
     private String date;
     private int photo;
+
     public String getName() {return name;}
     public String getMaterial() {return material;}
     public String getDate() {return date;}

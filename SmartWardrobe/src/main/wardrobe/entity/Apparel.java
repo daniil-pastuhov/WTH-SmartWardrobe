@@ -30,13 +30,14 @@ public class Apparel {
         this.id = id;
     }
 
-    public Apparel(Integer howWarm, String name, Bitmap image, Category category, Boolean inWash, String description) {
+    public Apparel(String name, Bitmap image, Category category, Integer howWarm, String description) {
         this.howWarm = howWarm;
         this.name = name;
         this.image = image;
         this.category = category;
-        this.inWash = inWash;
         this.description = description;
+        inWash = false;
+        wear = 0;
     }
 
     public Long getId() {

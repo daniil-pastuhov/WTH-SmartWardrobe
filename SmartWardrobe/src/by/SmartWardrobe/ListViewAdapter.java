@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import by.SmartWardrobe.wardrobe.Apparel;
 import by.idea.SmartWardrobe.R;
+import main.wardrobe.entity.Apparel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ListViewAdapter extends ArrayAdapter<Apparel> {
@@ -19,6 +21,8 @@ public class ListViewAdapter extends ArrayAdapter<Apparel> {
     LayoutInflater inflater;
     List<Apparel> apparelList;
     private SparseBooleanArray mSelectedItemsIds;
+
+    private static DateFormat df = new SimpleDateFormat("MMM dd, yyyy HH:mm");
 
     public ListViewAdapter(Context context, int resourceId,
                            List<Apparel> apparelList) {
@@ -31,7 +35,7 @@ public class ListViewAdapter extends ArrayAdapter<Apparel> {
 
     private class ViewHolder {
         TextView name;
-        TextView material;
+        TextView description;
         TextView dateOfWashing;
         ImageView photo;
     }
@@ -43,7 +47,7 @@ public class ListViewAdapter extends ArrayAdapter<Apparel> {
             view = inflater.inflate(R.layout.listview_item, null);
             // Locate the TextViews in listview_item.xml
             holder.name = (TextView) view.findViewById(R.id.name);
-            holder.material = (TextView) view.findViewById(R.id.matirial);
+            holder.description = (TextView) view.findViewById(R.id.matirial);
             holder.dateOfWashing = (TextView) view.findViewById(R.id.washing);
             // Locate the ImageView in listview_item.xml
             holder.photo = (ImageView) view.findViewById(R.id.photo);
@@ -53,10 +57,10 @@ public class ListViewAdapter extends ArrayAdapter<Apparel> {
         }
         // Capture position and set to the TextViews
         holder.name.setText(apparelList.get(position).getName());
-        holder.material.setText(apparelList.get(position).getMaterial());
-        holder.dateOfWashing.setText(apparelList.get(position).getDate());
+        holder.description.setText(apparelList.get(position).getDescription());
+        holder.dateOfWashing.setText(df.format(apparelList.get(position).getLastWahsedDate()));
         // Capture position and set to the ImageView
-        holder.photo.setImageResource(apparelList.get(position).getImageId());
+        holder.photo.setImageBitmap(apparelList.get(position).getImage());
         return view;
     }
 
