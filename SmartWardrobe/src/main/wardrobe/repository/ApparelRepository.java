@@ -15,9 +15,13 @@ public interface ApparelRepository {
     List<Apparel> getDirty();
     List<Apparel> getNotInWash();
     List<Apparel> getInWash();
-    List<String > getTargetCategories();
+
     Apparel getById(Long id);
     void setWash(Apparel app, boolean flag);
     void addApparel(Apparel app);
     void deleteApparel(Apparel app);
+
+    List<String> getTargetCategories();
+    void addTarget(String s);
+    void removeTarget(String s);
 }

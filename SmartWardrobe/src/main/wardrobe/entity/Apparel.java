@@ -15,7 +15,6 @@ public class Apparel implements Serializable {
     public static long idCounter = 0l;
     private static DateFormat df = new SimpleDateFormat("MMM dd, yyyy HH:mm");
 
-
     public static long getNextId() {
         return idCounter++;
     }

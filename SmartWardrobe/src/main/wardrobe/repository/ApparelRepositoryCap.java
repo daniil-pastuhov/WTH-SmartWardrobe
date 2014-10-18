@@ -18,6 +18,8 @@ public class ApparelRepositoryCap implements ApparelRepository, Serializable {
     private List<Apparel> wash = new ArrayList<Apparel>();
     private List<Apparel> clothes = new ArrayList<Apparel>();
 
+    private List<String> targets = new ArrayList<String>();
+
     @Override
     public List<Apparel> getAll() {
         return clothes;
@@ -108,12 +110,16 @@ public class ApparelRepositoryCap implements ApparelRepository, Serializable {
 
     @Override
     public List<String> getTargetCategories() {
-        //TODO FIX ME!!
-        ArrayList<String> ret = new ArrayList<String>() {{
-            add("Бал");
-            add("Спорт");
-            add("Дела");
-        }};
-        return ret;
+        return targets;
+    }
+
+    @Override
+    public void addTarget(String s) {
+        targets.add(s);
+    }
+
+    @Override
+    public void removeTarget(String s) {
+        targets.remove(s);
     }
 }
