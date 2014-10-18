@@ -32,10 +32,6 @@ public class WardrobeManager {
         return repository.getByCategory(category);
     }
 
-    List<Apparel> getByTags(List<String> tags) {
-        return repository.getByTags(tags);
-    }
-
     Apparel getById(Long id) {
         return repository.getById(id);
     }

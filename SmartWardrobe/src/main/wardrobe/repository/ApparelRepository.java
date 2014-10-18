@@ -12,9 +12,10 @@ public interface ApparelRepository {
 
     List<Apparel> getAll();
     List<Apparel> getByCategory(String category);
-    List<Apparel> getByTags(List<String> tags);
+    List<Apparel> getDirty();
     Apparel getById(Long id);
 
     void addApparel(Apparel app);
     void deleteApparel(Apparel app);
+    void setWash(Apparel app, boolean flag);
 }
