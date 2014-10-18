@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import main.constants.Category;
 
@@ -22,6 +24,7 @@ public class Apparel implements Serializable {
     private Long id;
     private String imagePath;
     private Category category;
+    private Set<String> targets;
     private Boolean inWash;
     private Integer howWarm;
     private Integer wear;
@@ -37,7 +40,7 @@ public class Apparel implements Serializable {
     public Apparel(String name, Bitmap image, Category category, Integer howWarm, String description) {
     }
 
-    public Apparel(String imagePath, Category category, Integer howWarm, String description) {
+    public Apparel(String imagePath, Category category, Integer howWarm, String description, Set<String> targets) {
         this.imagePath = imagePath;
         this.howWarm = howWarm;
         this.category = category;
@@ -45,6 +48,11 @@ public class Apparel implements Serializable {
         inWash = false;
         wear = 0;
         id = getNextId();
+        this.targets = targets;
+    }
+
+    public Apparel(String imagePath, Category category, Integer howWarm, String description) {
+        this(imagePath, category, howWarm, description, new HashSet<String>());
     }
 
     public Long getId() {
@@ -125,6 +133,18 @@ public class Apparel implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<String> getTargets() {
+        return targets;
+    }
+
+    public void setTargets(Set<String> targets) {
+        this.targets = targets;
+    }
+    
+    public void addTarget(String s) {
+        this.targets.add(s);
     }
 
     @Override

@@ -1,10 +1,15 @@
 package main.wardrobe.repository;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import main.constants.Category;
 import main.wardrobe.entity.Apparel;
-
-import java.io.Serializable;
-import java.util.*;
 
 /**
  * Created by TDiva on 18.10.2014.
@@ -34,6 +39,17 @@ public class ApparelRepositoryCap implements ApparelRepository, Serializable {
     }
 
     @Override
+    public List<Apparel> getByTarget(String target) {
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel ap : getNotInWash()) {
+            if (ap.getTargets().contains(target)) {
+                list.add(ap);
+            }
+        }
+        return list;
+    }
+
+    @Override
     public List<Apparel> getDirty() {
         List<Apparel> list = new ArrayList<Apparel>();
         for (Apparel app : clothes) {
@@ -60,6 +76,52 @@ public class ApparelRepositoryCap implements ApparelRepository, Serializable {
     @Override
     public List<Apparel> getInWash() {
         return wash;
+    }
+
+    @Override
+    public List<Apparel> getTopByTarget(String target) {
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel ap : getByTarget(target)) {
+            if (Category.SWEATER.equals(ap.getCategory()) ||
+                    Category.SHIRT.equals(ap.getCategory()) ||
+                    Category.TSHIRTS.equals(ap.getCategory())) {
+                list.add(ap);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Apparel> getBottomByTarget(String target) {
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel ap : getByTarget(target)) {
+            if (Category.SHOES.equals(ap.getCategory())) {
+                list.add(ap);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Apparel> getMiddleByTarget(String target) {
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel ap : getByTarget(target)) {
+            if (Category.TROUSERS.equals(ap.getCategory())) {
+                list.add(ap);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Apparel> getAccessoriseByTarget(String target) {
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel ap : getByTarget(target)) {
+            if (Category.ACCESSORIES.equals(ap.getCategory())) {
+                list.add(ap);
+            }
+        }
+        return list;
     }
 
     @Override
