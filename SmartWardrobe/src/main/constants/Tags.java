@@ -1,10 +1,9 @@
-package constants;
+package main.constants;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Tags implements Serializable {
+public class Tags {
 
 	private static long idCounter = 0;
 
@@ -12,7 +11,7 @@ public class Tags implements Serializable {
 		return idCounter++;
 	}
 
-	private static Map<String, Long> tags = new HashMap<>();
+	private static Map<String, Long> tags = new HashMap<String, Long>();
 
 	public static Long getTagId(String name) {
 		return tags.get(name);
