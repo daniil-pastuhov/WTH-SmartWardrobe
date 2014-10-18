@@ -21,7 +21,8 @@ public class MyActivity extends TabActivity {
     /**
      * Called when the activity is first created.
      */
-    final String FILENAME = "deficon";
+    final String FILENAMETAG = "deficon";
+    final String FILENAME = "basa";
     TextView tvWeather;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class MyActivity extends TabActivity {
         weatherTask.execute("Minsk", "metric");
         TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
         try {
-            ObjectOutputStream os = new ObjectOutputStream(openFileOutput(FILENAME, MODE_PRIVATE));
+            ObjectOutputStream os = new ObjectOutputStream(openFileOutput(FILENAMETAG, MODE_PRIVATE));
             os.writeObject(BitmapFactory.decodeResource(getResources(), R.drawable.ex));
             os.close();
         }
