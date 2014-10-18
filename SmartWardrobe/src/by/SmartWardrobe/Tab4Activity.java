@@ -31,12 +31,12 @@ public class Tab4Activity extends Activity {
         setContentView(R.layout.to_wash_layout);
 
 //        apparelList = WardrobeManager.getInstance().getDirty();
-        apparelList = Arrays.asList(
+        apparelList = new ArrayList<Apparel>(Arrays.asList(
                 new Apparel("1", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
                 new Apparel("2", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
                 new Apparel("3", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
                 new Apparel("4", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc")
-        );
+        ));
 
         // Locate the ListView in listview_main.xml
         list = (ListView) findViewById(R.id.lvToWash);

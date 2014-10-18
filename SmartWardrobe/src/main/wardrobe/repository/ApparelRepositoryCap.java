@@ -25,6 +25,8 @@ public class ApparelRepositoryCap implements ApparelRepository {
     @Override
     public List<Apparel> getByCategory(String category) {
         Category c = Category.getByType(category);
+        if (c == null || !catalog.containsKey(c))
+            return new ArrayList<Apparel>();
         return catalog.get(c);
     }
 
