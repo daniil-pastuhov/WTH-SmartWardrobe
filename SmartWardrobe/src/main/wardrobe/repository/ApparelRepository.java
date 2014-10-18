@@ -14,6 +14,7 @@ public interface ApparelRepository {
     List<Apparel> getDirty();
     List<Apparel> getNotInWash();
     List<Apparel> getInWash();
+    List<Apparel> getTargetCategories();
     Apparel getById(Long id);
     void setWash(Apparel app, boolean flag);
     void addApparel(Apparel app);

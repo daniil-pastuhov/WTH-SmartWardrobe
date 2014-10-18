@@ -103,4 +103,9 @@ public class ApparelRepositoryCap implements ApparelRepository {
             wash.remove(app);
         }
     }
+
+    @Override
+    public List<Apparel> getTargetCategories() {
+        return null;
+    }
 }
