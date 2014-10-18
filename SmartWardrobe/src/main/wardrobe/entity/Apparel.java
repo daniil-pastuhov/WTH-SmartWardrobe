@@ -1,135 +1,121 @@
 package main.wardrobe.entity;
 
+
+import android.graphics.Bitmap;
+
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import main.constants.Category;
-import main.constants.Tags;
 
 public class Apparel {
 
-	private static long idCounter = 0;
+    public static long idCounter = 0l;
 
-	private static long getNextId() {
-		return idCounter++;
-	}
+    public static long getNextId() {
+        return idCounter++;
+    }
 
-	private Long id;
-	private String imagePath;
-	private Category category;
-	private Boolean inWash;
-	private Integer howWarm;
-	private Integer wear;
-	private Date lastWahsedDate;
-	private Date lastWornDate;
-	private Set<Long> tags;
+    private Long id;
+    private String name;
+    private Bitmap image;
+    private Category category;
+    private Boolean inWash;
+    private Integer howWarm;
+    private Integer wear;
+    private Date lastWahsedDate;
+    private Date lastWornDate;
+    private String description;
 
-	public Apparel(Long id) {
-		this.id = id;
-	}
+    public Apparel(Long id) {
+        this.id = id;
+    }
 
-	public Apparel(String imagePath, Category category, Integer howWarm,
-			List<String> tags) {
-		super();
-		this.id = getNextId();
-		this.imagePath = imagePath;
-		this.category = category;
-		this.inWash = false;
-		this.howWarm = howWarm;
-		this.wear = 0;
-		this.lastWahsedDate = null;
-		this.lastWornDate = null;
-		this.tags = new HashSet<Long>();
-		for (String tag : tags) {
-			this.tags.add(Tags.getOrCreateTagId(tag));
-		}
-	}
+    public Apparel(Integer howWarm, String name, Bitmap image, Category category, Boolean inWash, String description) {
+        this.howWarm = howWarm;
+        this.name = name;
+        this.image = image;
+        this.category = category;
+        this.inWash = inWash;
+        this.description = description;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getImagePath() {
-		return imagePath;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Category getCategory() {
-		return category;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+    public Bitmap getImage() {
+        return image;
+    }
 
-	public Boolean getInWash() {
-		return inWash;
-	}
+    public void setImage(Bitmap image) {
+        this.image = image;
+    }
 
-	public void setInWash(Boolean inWash) {
-		this.inWash = inWash;
-		if (inWash) {
-			wear = 0;
-			lastWahsedDate = new Date();
-			lastWornDate = null;
-		}
-	}
+    public Category getCategory() {
+        return category;
+    }
 
-	public Integer getHowWarm() {
-		return howWarm;
-	}
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
-	public void setHowWarm(Integer howWarm) {
-		this.howWarm = howWarm;
-	}
+    public Boolean getInWash() {
+        return inWash;
+    }
 
-	public Integer getWear() {
-		return wear;
-	}
+    public void setInWash(Boolean inWash) {
+        this.inWash = inWash;
+    }
 
-	public void setWear(Integer wear) {
-		this.wear = wear;
-	}
+    public Integer getHowWarm() {
+        return howWarm;
+    }
 
-	public void incWear() {
-		wear++;
-	}
+    public void setHowWarm(Integer howWarm) {
+        this.howWarm = howWarm;
+    }
 
-	public Date getLastWahsedDate() {
-		return lastWahsedDate;
-	}
+    public Integer getWear() {
+        return wear;
+    }
 
-	public void setLastWahsedDate(Date lastWahsedDate) {
-		this.lastWahsedDate = lastWahsedDate;
-	}
+    public void setWear(Integer wear) {
+        this.wear = wear;
+    }
 
-	public Date getLastWornDate() {
-		return lastWornDate;
-	}
+    public Date getLastWahsedDate() {
+        return lastWahsedDate;
+    }
 
-	public void setLastWornDate(Date lastWornDate) {
-		this.lastWornDate = lastWornDate;
-	}
+    public void setLastWahsedDate(Date lastWahsedDate) {
+        this.lastWahsedDate = lastWahsedDate;
+    }
 
-	public Set<Long> getTags() {
-		return tags;
-	}
+    public Date getLastWornDate() {
+        return lastWornDate;
+    }
 
-	public void setTags(Set<Long> tags) {
-		this.tags = tags;
-	}
+    public void setLastWornDate(Date lastWornDate) {
+        this.lastWornDate = lastWornDate;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public boolean equals(Apparel ap) {
-		return id == ap.id;
-	}
-
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
