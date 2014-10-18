@@ -3,6 +3,8 @@ package main.wardrobe.entity;
 
 import android.graphics.Bitmap;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import main.constants.Category;
@@ -10,6 +12,9 @@ import main.constants.Category;
 public class Apparel {
 
     public static long idCounter = 0l;
+    private static DateFormat df = new SimpleDateFormat("MMM dd, yyyy HH:mm");
+
+
 
     public static long getNextId() {
         return idCounter++;
@@ -100,12 +105,20 @@ public class Apparel {
         return lastWahsedDate;
     }
 
+    public String getLastWashedDateString() {
+        return lastWahsedDate == null ? "" : df.format(lastWahsedDate);
+    }
+
     public void setLastWahsedDate(Date lastWahsedDate) {
         this.lastWahsedDate = lastWahsedDate;
     }
 
     public Date getLastWornDate() {
         return lastWornDate;
+    }
+
+    public String getLastWornDateString() {
+        return lastWornDate == null ? "" : df.format(lastWornDate);
     }
 
     public void setLastWornDate(Date lastWornDate) {

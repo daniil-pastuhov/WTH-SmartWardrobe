@@ -13,6 +13,7 @@ import main.wardrobe.entity.Apparel;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ListViewAdapter extends ArrayAdapter<Apparel> {
@@ -21,8 +22,6 @@ public class ListViewAdapter extends ArrayAdapter<Apparel> {
     LayoutInflater inflater;
     List<Apparel> apparelList;
     private SparseBooleanArray mSelectedItemsIds;
-
-    private static DateFormat df = new SimpleDateFormat("MMM dd, yyyy HH:mm");
 
     public ListViewAdapter(Context context, int resourceId,
                            List<Apparel> apparelList) {
@@ -58,7 +57,7 @@ public class ListViewAdapter extends ArrayAdapter<Apparel> {
         // Capture position and set to the TextViews
         holder.name.setText(apparelList.get(position).getName());
         holder.description.setText(apparelList.get(position).getDescription());
-        holder.dateOfWashing.setText(df.format(apparelList.get(position).getLastWahsedDate()));
+        holder.dateOfWashing.setText(apparelList.get(position).getLastWashedDateString());
         // Capture position and set to the ImageView
         holder.photo.setImageBitmap(apparelList.get(position).getImage());
         return view;

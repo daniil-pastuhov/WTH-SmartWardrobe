@@ -9,6 +9,13 @@ import main.wardrobe.repository.ApparelRepository;
 import main.wardrobe.repository.ApparelRepositoryCap;
 
 public class WardrobeManager {
+
+    private static List<Apparel> testList = Arrays.asList(
+            new Apparel("Ap1", null, Category.ACCESSORIES, 0, "desc"),
+            new Apparel("Ap2", null, Category.DRESS, 4, "desc"),
+            new Apparel("Ap3", null, Category.SHIRT, 1, "desc")
+    );
+
     private static WardrobeManager instance;
 
     public static WardrobeManager getInstance() {
@@ -22,10 +29,9 @@ public class WardrobeManager {
 
     private WardrobeManager() {
         repository = new ApparelRepositoryCap();
-    }
-
-    List<Apparel> getAll() {
-        return repository.getAll();
+        for (Apparel ap: testList) {
+            repository.addApparel(ap);
+        }
     }
 
     List<Apparel> getByCategory(String category) {
@@ -36,15 +42,9 @@ public class WardrobeManager {
         return repository.getById(id);
     }
 
-    private static List<Apparel> testList = Arrays.asList(
-            new Apparel("Ap1", null, Category.ACCESSORIES, 0, "desc"),
-            new Apparel("Ap2", null, Category.DRESS, 4, "desc"),
-            new Apparel("Ap3", null, Category.SHIRT, 1, "desc")
-    );
 
     public List<Apparel> getDirty() {
-        // FIXME: return
-        return testList;
+        return repository.getDirty();
     }
 
     void addApparel(Apparel app) {
