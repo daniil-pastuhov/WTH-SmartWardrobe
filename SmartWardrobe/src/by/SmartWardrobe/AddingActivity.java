@@ -20,6 +20,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import by.idea.SmartWardrobe.R;
 import main.constants.Category;
@@ -33,12 +36,15 @@ public class AddingActivity extends Activity {
     //Bitmap imageBitmap;
 
     String mCurrentPhotoPath = "...";
+    Set<String> targets;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adding_activity);
         //TODO сделать добавление предмета в коллекцию
+
+        targets = new HashSet<>();
 
         final ImageView imV = (ImageView)findViewById(R.id.imageViewAdd);
         imV.setImageResource(by.idea.SmartWardrobe.R.drawable.ex);
@@ -99,7 +105,8 @@ public class AddingActivity extends Activity {
                     String maxT = edtMaxT.getText().toString();
                     String descr = edtDescr.getText().toString();
 
-                    Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat), 3, descr);
+                    Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat), 3, descr, targets);
+                    WardrobeManager.getInstance().addApparel(newApparel);
 
                     sp.setSelection(0);
                     edtMinT.setText("");
@@ -109,6 +116,7 @@ public class AddingActivity extends Activity {
                     chB0.setChecked(false);
                     chB1.setChecked(false);
                     chB2.setChecked(false);
+                    targets.clear();
 
                 } catch (NullPointerException e) {
                     e.printStackTrace();
@@ -140,11 +148,16 @@ public class AddingActivity extends Activity {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
 
-        // Check which checkbox was clicked
+        if(checked) {
+            targets.add(((CheckBox) view).getText().toString());
+        }
+
+        /*// Check which checkbox was clicked
         switch (view.getId()) {
             case R.id.checkBox0:
                 if (checked)
                 // Put some meat on the sandwich
+
                 {}
                 else
                 // Remove the meat
@@ -167,7 +180,7 @@ public class AddingActivity extends Activity {
                 {}
                 break;
             // TODO: Veggie sandwich
-        }
+        }*/
     }
 }
 
