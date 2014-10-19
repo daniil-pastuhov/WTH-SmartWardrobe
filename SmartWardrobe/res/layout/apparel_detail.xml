@@ -10,6 +10,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
+                 android:background="@drawable/edges_small"
                 android:id="@+id/tvApparelName"/>
     </TableRow>
     <TableRow
@@ -19,6 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                  android:background="@drawable/edges_small"
                 android:text="Описание вещи"
                 android:id="@+id/textView2"/>
     </TableRow>

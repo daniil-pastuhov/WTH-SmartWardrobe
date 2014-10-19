@@ -18,6 +18,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:background="@drawable/edges_big"
                     android:text="@string/find_by_teg_label"
                     android:id="@+id/text"/>
             <EditText
@@ -30,6 +31,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edges_big"
                 android:text="Найти"
                 android:id="@+id/findByTegs"/>
     </LinearLayout>

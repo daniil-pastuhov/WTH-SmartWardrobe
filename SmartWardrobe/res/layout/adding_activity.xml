@@ -6,10 +6,7 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:columnCount="1"
-    android:rowCount="3"
-    android:alignmentMode="alignBounds"
-    android:columnOrderPreserved="true"
-    android:rowOrderPreserved="true">
+    android:rowCount="4">
 
     <GridLayout
         android:layout_width="fill_parent"
@@ -51,23 +48,7 @@
         android:layout_column="0"
         android:layout_row="1"
         android:columnCount="2"
-        android:rowCount="3">
-
-        <TextView
-            android:layout_width="81dp"
-            android:layout_height="38dp"
-            android:text="@string/textView_name_add"
-            android:id="@+id/textViewNameAdd"
-            android:textSize="24sp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextNameAdd"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:editable="false"
-            android:inputType="text" />
+        android:rowCount="2">
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,14 +56,14 @@
             android:text="@string/textView"
             android:id="@+id/textViewWarmthAdd"
             android:layout_column="0"
-            android:layout_row="1"
+            android:layout_row="0"
             android:textSize="24sp" />
 
         <GridLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_column="1"
-            android:layout_row="1"
+            android:layout_row="0"
             android:columnCount="4"
             android:rowCount="1"
             android:id="@+id/gridTemp">
@@ -92,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/textView_minTemp_add"
                 android:id="@+id/textViewMinTAdd"
+                android:background="@drawable/edges_small"
                 android:layout_column="0"
                 android:layout_row="0"
                 android:textSize="24sp" />
@@ -102,13 +84,14 @@
                 android:id="@+id/editTextMinTAdd"
                 android:layout_column="1"
                 android:layout_row="0"
-                android:inputType="text" />
+                android:inputType="numberSigned" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/textView_maxTemp_add"
                 android:id="@+id/textViewMaxTAdd"
+                android:background="@drawable/edges_small"
                 android:layout_column="2"
                 android:layout_row="0"
                 android:textSize="24sp" />
@@ -119,7 +102,7 @@
                 android:id="@+id/editTextMaxTAdd"
                 android:layout_row="0"
                 android:layout_column="3"
-                android:inputType="text" />
+                android:inputType="numberSigned" />
         </GridLayout>
 
         <TextView
@@ -128,7 +111,7 @@
             android:text="@string/textView_descr_add"
             android:id="@+id/textViewDescrAdd"
             android:layout_column="0"
-            android:layout_row="2"
+            android:layout_row="1"
             android:textSize="24sp" />
 
         <EditText
@@ -136,9 +119,66 @@
             android:layout_height="wrap_content"
             android:id="@+id/editTextDescrAdd"
             android:layout_column="1"
-            android:layout_row="2"
+            android:layout_row="1"
             android:inputType="text" />
+
     </GridLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_row="2"
+        android:showDividers="beginning|end">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Куда носить:"
+                android:id="@+id/textViewChBAdding"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="На прогулку"
+                android:id="@+id/checkBox0"
+                android:onClick="onCheckBoxClick" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="На работу"
+                android:id="@+id/checkBox1"
+                android:onClick="onCheckBoxClick" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="В театр"
+                android:id="@+id/checkBox2"
+                android:onClick="onCheckBoxClick" />
+        </TableRow>
+    </TableLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -146,6 +186,7 @@
         android:text="@string/button_addToWardrobe"
         android:id="@+id/buttonToWardrobeAdd"
         android:layout_column="0"
-        android:layout_row="2"
+        android:layout_row="3"
         android:textSize="24sp" />
+
 </GridLayout>

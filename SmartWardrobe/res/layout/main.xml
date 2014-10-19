@@ -23,6 +23,7 @@
             android:shadowDy="-3"
             android:shadowRadius="3"
             android:textColor="#B22222"
+            android:background="@drawable/rounded_edges"
             android:layout_height="wrap_content"
             android:text="Ожидается подключение"
             />
