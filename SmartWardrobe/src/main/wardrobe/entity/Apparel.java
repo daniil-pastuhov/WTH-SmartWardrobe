@@ -1,14 +1,12 @@
 package main.wardrobe.entity;
 
 
-import android.graphics.Bitmap;
+import main.constants.Category;
 
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import main.constants.Category;
 
 public class Apparel implements Serializable {
 
@@ -32,10 +30,6 @@ public class Apparel implements Serializable {
 
     public Apparel(Long id) {
         this.id = id;
-    }
-
-    @Deprecated
-    public Apparel(String name, Bitmap image, Category category, Integer howWarm, String description) {
     }
 
     public Apparel(String imagePath, Category category, Integer howWarm, String description) {
