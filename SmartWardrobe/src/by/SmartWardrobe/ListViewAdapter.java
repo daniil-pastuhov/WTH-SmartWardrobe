@@ -1,7 +1,6 @@
 package by.SmartWardrobe;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +53,9 @@ public class ListViewAdapter extends ArrayAdapter<Apparel> {
         holder.description.setText(apparelList.get(position).getDescription());
         holder.dateOfWashing.setText(apparelList.get(position).getLastWashedDateString());
         // Capture position and set to the ImageView
-        holder.photo.setImageBitmap(BitmapFactory.decodeFile(apparelList.get(position).getImagePath()));
+//        holder.photo.setImageBitmap(BitmapFactory.decodeFile(apparelList.get(position).getImagePath()));
+        //TODO fix it!
+        holder.photo.setImageBitmap(MyActivity.icon);
         return view;
     }
 
