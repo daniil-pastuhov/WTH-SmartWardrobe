@@ -20,28 +20,33 @@
                 android:id="@+id/namelabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edges_small"
                 android:text="@string/namelabel" />
         <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edges_small"
                 android:layout_toRightOf="@+id/namelabel" />
         <TextView
                 android:id="@+id/matiriallabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/namelabel"
+                android:background="@drawable/edges_small"
                 android:text="@string/materiallabel" />
         <TextView
                 android:id="@+id/matirial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
+                 android:background="@drawable/edges_small"
                 android:layout_toRightOf="@+id/matiriallabel" />
         <TextView
                 android:id="@+id/washinglabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edges_small"
                 android:layout_below="@+id/matiriallabel"
                 android:text="@string/washinglabel" />
         <TextView
@@ -49,6 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/washinglabel"
+                 android:background="@drawable/edges_small"
                 android:layout_toRightOf="@+id/washinglabel" />
     </GridLayout>
 
