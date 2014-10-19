@@ -7,7 +7,8 @@ import main.constants.Category;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Set;
 
 public class Apparel implements Serializable {
 
