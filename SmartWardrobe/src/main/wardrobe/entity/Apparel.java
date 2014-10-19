@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 public class Apparel implements Serializable {
 
@@ -48,10 +49,6 @@ public class Apparel implements Serializable {
         wear = 0;
         id = getNextId();
         this.targets = targets;
-    }
-
-    public Apparel(String imagePath, Category category, Integer howWarm, String description) {
-        this(imagePath, category, howWarm, description, new HashSet<String>());
     }
 
     public Long getId() {
