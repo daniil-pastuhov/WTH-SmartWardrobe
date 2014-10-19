@@ -7,8 +7,7 @@ import main.constants.Category;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 public class Apparel implements Serializable {
 
@@ -39,8 +38,10 @@ public class Apparel implements Serializable {
     public Apparel(String name, Bitmap image, Category category, Integer howWarm, String description) {
         id = getNextId();
     }
-
-    public Apparel(String imagePath, Category category, Integer howWarm, String description) {
+    static public Apparel getEmptyApparel(String s) {
+        return new Apparel(s, Category.OTHER, 0, "...", Arrays.asList(""));
+    }
+    public Apparel(String imagePath, Category category, Integer howWarm, String description, List<String> targets) {
         this.imagePath = imagePath;
         this.howWarm = howWarm;
         this.category = category;
@@ -48,7 +49,10 @@ public class Apparel implements Serializable {
         inWash = false;
         wear = 0;
         id = getNextId();
-        this.targets = targets;
+        this.targets = new HashSet<String>();
+        for (int i = 0; i < targets.size(); i++) {
+            this.targets.add(targets.get(i));
+        }
     }
 
     public Long getId() {
