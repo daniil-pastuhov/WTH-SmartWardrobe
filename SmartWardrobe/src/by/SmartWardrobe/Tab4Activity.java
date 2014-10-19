@@ -20,7 +20,7 @@ import main.wardrobe.entity.Apparel;
 import main.wardrobe.service.WardrobeManager;
 
 public class Tab4Activity extends Activity {
-    ListView list;
+    ListView list1, list2;
     PairListViewAdapter leftAdapter, rightAdapter;
     List<Apparel> apparelList = new ArrayList<Apparel>(), washList = new ArrayList<Apparel>();
 
@@ -39,23 +39,23 @@ public class Tab4Activity extends Activity {
         ));
 
         // Locate the ListView in listview_main.xml
-        list = (ListView) findViewById(R.id.lvToWash);
+        list1 = (ListView) findViewById(R.id.lvToWash);
 
         // Pass results to ListViewAdapter Class
         leftAdapter = new PairListViewAdapter(this, R.layout.listview_item,
                 apparelList);
 
         // Binds the Adapter to the ListView
-        list.setAdapter(leftAdapter);
-        list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        list1.setAdapter(leftAdapter);
+        list1.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         // Capture ListView item click
-        list.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+        list1.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
 
             @Override
             public void onItemCheckedStateChanged(ActionMode mode,
                                                   int position, long id, boolean checked) {
                 // Capture total checked items
-                final int checkedCount = list.getCheckedItemCount();
+                final int checkedCount = list1.getCheckedItemCount();
                 // Set the CAB title according to total checked items
                 mode.setTitle(checkedCount + " Selected");
                 // Calls toggleSelection method from ListViewAdapter Class
@@ -112,7 +112,7 @@ public class Tab4Activity extends Activity {
         ));
 
         // Locate the ListView in listview_main.xml
-        list = (ListView) findViewById(R.id.lvFromWashWash);
+        list2 = (ListView) findViewById(R.id.lvFromWashWash);
 
 
         // Pass results to ListViewAdapter Class
@@ -120,16 +120,16 @@ public class Tab4Activity extends Activity {
                 washList);
 
         // Binds the Adapter to the ListView
-        list.setAdapter(rightAdapter);
-        list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        list2.setAdapter(rightAdapter);
+        list2.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         // Capture ListView item click
-        list.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+        list2.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
 
             @Override
             public void onItemCheckedStateChanged(ActionMode mode,
                                                   int position, long id, boolean checked) {
                 // Capture total checked items
-                final int checkedCount = list.getCheckedItemCount();
+                final int checkedCount = list2.getCheckedItemCount();
                 // Set the CAB title according to total checked items
                 mode.setTitle(checkedCount + " Selected");
                 // Calls toggleSelection method from ListViewAdapter Class
@@ -139,7 +139,7 @@ public class Tab4Activity extends Activity {
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.washing:
+                    case R.id.returnTo:
                         // Calls getSelectedIds method from ListViewAdapter Class
                         SparseBooleanArray selected = rightAdapter
                                 .getSelectedIds();
@@ -162,7 +162,7 @@ public class Tab4Activity extends Activity {
 
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                mode.getMenuInflater().inflate(R.menu.activity_main, menu);
+                mode.getMenuInflater().inflate(R.menu.activity_main_1, menu);
                 return true;
             }
 

@@ -143,7 +143,7 @@ public class Apparel implements Serializable {
     public void setTargets(Set<String> targets) {
         this.targets = targets;
     }
-    
+
     public void addTarget(String s) {
         this.targets.add(s);
     }

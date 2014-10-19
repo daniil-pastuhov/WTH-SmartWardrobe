@@ -44,7 +44,7 @@ public class AddingActivity extends Activity {
         setContentView(R.layout.adding_activity);
         //TODO сделать добавление предмета в коллекцию
 
-        targets = new HashSet<>();
+        targets = new HashSet<String>();
 
         final ImageView imV = (ImageView)findViewById(R.id.imageViewAdd);
         imV.setImageResource(R.drawable.question);
