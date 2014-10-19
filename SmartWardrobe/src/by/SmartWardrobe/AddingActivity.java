@@ -2,32 +2,23 @@ package by.SmartWardrobe;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
+import android.widget.*;
+import by.idea.SmartWardrobe.R;
+import main.constants.Category;
+import main.wardrobe.entity.Apparel;
+import main.wardrobe.service.WardrobeManager;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
-import by.idea.SmartWardrobe.R;
-import main.constants.Category;
-import main.wardrobe.entity.Apparel;
-import main.wardrobe.service.WardrobeManager;
 
 public class AddingActivity extends Activity {
 
@@ -105,7 +96,7 @@ public class AddingActivity extends Activity {
                     String maxT = edtMaxT.getText().toString();
                     String descr = edtDescr.getText().toString();
 
-                    Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat),
+                    Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat),3, descr);
                     WardrobeManager.getInstance().addApparel(newApparel);
 
                     sp.setSelection(0);
