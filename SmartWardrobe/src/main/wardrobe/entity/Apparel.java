@@ -38,6 +38,7 @@ public class Apparel implements Serializable {
 
     @Deprecated
     public Apparel(String name, Bitmap image, Category category, Integer howWarm, String description) {
+        id = getNextId();
     }
 
     public Apparel(String imagePath, Category category, Integer howWarm, String description, Set<String> targets) {

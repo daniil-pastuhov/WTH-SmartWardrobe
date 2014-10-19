@@ -82,4 +82,8 @@ public class WardrobeManager {
     public List<String> getTargetCategories() {
         return repository.getTargetCategories();
     }
+
+    public void setInWash(Apparel app, boolean flag) {
+        repository.setWash(app, flag);
+    }
 }
