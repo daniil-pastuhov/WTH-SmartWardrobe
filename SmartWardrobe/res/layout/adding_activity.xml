@@ -73,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/textView_minTemp_add"
                 android:id="@+id/textViewMinTAdd"
+                android:background="@drawable/edges_small"
                 android:layout_column="0"
                 android:layout_row="0"
                 android:textSize="24sp" />
@@ -90,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/textView_maxTemp_add"
                 android:id="@+id/textViewMaxTAdd"
+                android:background="@drawable/edges_small"
                 android:layout_column="2"
                 android:layout_row="0"
                 android:textSize="24sp" />

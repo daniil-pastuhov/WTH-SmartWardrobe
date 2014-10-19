@@ -17,12 +17,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/edges_big"
             android:text="Пора бы в стирку"/>
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/edges_big"
             android:text="Уже в стирке"/>
     </LinearLayout>
 
