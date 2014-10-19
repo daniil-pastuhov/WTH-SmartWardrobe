@@ -28,6 +28,7 @@
     <string name="secondlabel">"Метки: "</string>
     <string name="washinglabel">"Дата последней стирки: "</string>
     <string name="wash">В стирку</string>
+    <string name="returnTo">Вернуть в шкаф</string>
     <string name="add_item">Добавить вещь</string>
     <string name="delete_item">Удалить вещь</string>
     <string name="find_by_teg_label">Введите ключевые слова через запятую</string>

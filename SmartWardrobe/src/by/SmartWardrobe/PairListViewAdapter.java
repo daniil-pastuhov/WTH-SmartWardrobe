@@ -1,9 +1,11 @@
 package by.SmartWardrobe;
 
 import android.content.Context;
+import android.view.Menu;
 
 import java.util.List;
 
+import by.idea.SmartWardrobe.R;
 import main.wardrobe.entity.Apparel;
 
 /**
