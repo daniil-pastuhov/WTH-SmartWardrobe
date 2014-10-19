@@ -9,14 +9,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.ListView;
-import by.idea.SmartWardrobe.R;
-import main.constants.Category;
-import main.wardrobe.entity.Apparel;
-import main.wardrobe.service.WardrobeManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import by.idea.SmartWardrobe.R;
+import main.constants.Category;
+import main.wardrobe.entity.Apparel;
+import main.wardrobe.service.WardrobeManager;
 
 public class Tab4Activity extends Activity {
     ListView list;
@@ -24,8 +25,7 @@ public class Tab4Activity extends Activity {
     List<Apparel> apparelList = new ArrayList<Apparel>(), washList = new ArrayList<Apparel>();
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.to_wash_layout);
