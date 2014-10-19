@@ -26,30 +26,41 @@ public class MyActivity extends TabActivity {
     final String FILENAME = "basa";
     String experimentalPath = null;
     TextView tvWeather;
+    static Bitmap icon;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        writeFileSD();
+//        try {
+//            writeObject(new ObjectOutputStream(openFileOutput(FILENAMETAG, MODE_PRIVATE)), BitmapFactory.decodeResource(getResources(), R.drawable.ex));
+
+            experimentalPath = getFilesDir() + "/" + FILENAMETAG;
+            icon = BitmapFactory.decodeResource(getResources(), R.drawable.ex);
+//        }
+//
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        };
+//        writeFileSD();
         setContentView(by.idea.SmartWardrobe.R.layout.main);
         tvWeather = (TextView) findViewById(by.idea.SmartWardrobe.R.id.tvWeather);
         FetchWeatherTask weatherTask = new FetchWeatherTask(this, tvWeather);
         weatherTask.execute("Minsk", "metric");
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
-        try {
-            ObjectInputStream is = new ObjectInputStream(openFileInput(FILENAME));
-            WardrobeManager.loadFromFile(is);
-            is.close();
-        } catch (IOException e) {
+//        try {
+//            ObjectInputStream is = new ObjectInputStream(openFileInput(FILENAME));
+//            WardrobeManager.loadFromFile(is);
+//            is.close();
+//        } catch (IOException e) {
+//
+        //TODO delete inicializ
 
-        }
-        //TODO delete inicializer
-        Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ex);
 
-        for (int i = 0; i < 5; i++) {
-            WardrobeManager.getInstance().addApparel(new Apparel(experimentalPath, Category.SHIRT, 0, "..."));
-
-        }
+        WardrobeManager.getInstance().addApparel(new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 5, "DG, коллекция 2050 года"));
+        WardrobeManager.getInstance().addApparel(new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 5, "Марвел студио"));
+        WardrobeManager.getInstance().addApparel(new Apparel(Integer.toString(R.drawable.head), Category.DRESS, 1, "Платье моей мамы"));
+        WardrobeManager.getInstance().addApparel(new Apparel(Integer.toString(R.drawable.trousers), Category.TROUSERS, 2, "Мои любимые штанны"));
+        WardrobeManager.getInstance().addApparel(new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 3, "..."));
 
         TabHost.TabSpec tab1 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_auto_find));
         TabHost.TabSpec tab2 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_catalog));
@@ -103,16 +114,17 @@ public class MyActivity extends TabActivity {
         startActivity(intent);
     }
 
-    @Override
-    public void onDestroy() {
-        try {
-            ObjectOutputStream os = new ObjectOutputStream(openFileOutput(FILENAME, MODE_PRIVATE));
-            WardrobeManager.saveToFile(os);
-            os.close();
-        } catch (IOException e) {
-
-        }
-    }
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+////        try {
+////            ObjectOutputStream os = new ObjectOutputStream(openFileOutput(FILENAME, MODE_PRIVATE));
+////            WardrobeManager.saveToFile(os);
+////            os.close();
+////        } catch (IOException e) {
+////
+////        }
+//    }
     void writeFileSD() {
         if (!Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {
@@ -137,5 +149,27 @@ public class MyActivity extends TabActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    protected class BitmapDataObject implements Serializable {
+        private static final long serialVersionUID = 111696345129311948L;
+        public byte[] imageByteArray;
+    }
+
+    /** Included for serialization - write this layer to the output stream. */
+    private void writeObject(ObjectOutputStream out, Bitmap bm) throws IOException{
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        BitmapDataObject bitmapDataObject = new BitmapDataObject();
+        bitmapDataObject.imageByteArray = stream.toByteArray();
+
+        out.writeObject(bitmapDataObject);
+        out.close();
+    }
+
+    /** Included for serialization - read this object from the supplied input stream. */
+    private Bitmap readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
+        BitmapDataObject bitmapDataObject = (BitmapDataObject)in.readObject();
+        Bitmap image = BitmapFactory.decodeByteArray(bitmapDataObject.imageByteArray, 0, bitmapDataObject.imageByteArray.length);
+        return image;
     }
 }
