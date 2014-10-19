@@ -47,7 +47,7 @@ public class AddingActivity extends Activity {
         targets = new HashSet<>();
 
         final ImageView imV = (ImageView)findViewById(R.id.imageViewAdd);
-        imV.setImageResource(by.idea.SmartWardrobe.R.drawable.ex);
+        imV.setImageResource(R.drawable.question);
 
         final Button makePhoto = (Button)findViewById(R.id.btnPhotoAdd);
         makePhoto.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +112,7 @@ public class AddingActivity extends Activity {
                     edtMinT.setText("");
                     edtMaxT.setText("");
                     edtDescr.setText("");
-                    imV.setImageResource(by.idea.SmartWardrobe.R.drawable.ex);
+                    imV.setImageResource(R.drawable.question);
                     chB0.setChecked(false);
                     chB1.setChecked(false);
                     chB2.setChecked(false);
