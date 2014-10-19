@@ -105,7 +105,7 @@ public class AddingActivity extends Activity {
                     String maxT = edtMaxT.getText().toString();
                     String descr = edtDescr.getText().toString();
 
-                    Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat),
+                    Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat), 3, descr, targets);
                     WardrobeManager.getInstance().addApparel(newApparel);
 
                     sp.setSelection(0);

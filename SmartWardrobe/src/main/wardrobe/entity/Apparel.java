@@ -2,19 +2,20 @@ package main.wardrobe.entity;
 
 
 import android.graphics.Bitmap;
-import main.constants.Category;
 
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
+
+import main.constants.Category;
 
 public class Apparel implements Serializable {
 
     public static long idCounter = 0l;
     private static DateFormat df = new SimpleDateFormat("MMM dd, yyyy HH:mm");
-
 
     public static long getNextId() {
         return idCounter++;
@@ -40,7 +41,7 @@ public class Apparel implements Serializable {
         id = getNextId();
     }
 
-    public Apparel(String imagePath, Category category, Integer howWarm, String description) {
+    public Apparel(String imagePath, Category category, Integer howWarm, String description, Set<String> targets) {
         this.imagePath = imagePath;
         this.howWarm = howWarm;
         this.category = category;
@@ -49,6 +50,10 @@ public class Apparel implements Serializable {
         wear = 0;
         id = getNextId();
         this.targets = targets;
+    }
+
+    public Apparel(String imagePath, Category category, Integer howWarm, String description) {
+        this(imagePath, category, howWarm, description, new HashSet<String>());
     }
 
     public Long getId() {
@@ -138,7 +143,7 @@ public class Apparel implements Serializable {
     public void setTargets(Set<String> targets) {
         this.targets = targets;
     }
-    
+
     public void addTarget(String s) {
         this.targets.add(s);
     }
