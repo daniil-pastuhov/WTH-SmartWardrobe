@@ -36,7 +36,9 @@ public class Tab3Activity  extends Activity
 
                     if (list != null && list.size() != 0) {
                         ListView listView = (ListView) findViewById(R.id.lvFounded);
+
                         ListViewAdapter listviewadapter = new ListViewAdapter(getApplicationContext(), R.layout.listview_item, list);
+                        listviewadapter.setResources(getResources());
                         // Binds the Adapter to the ListView
                         listView.setAdapter(listviewadapter);
                         listView.setChoiceMode(ListView.CHOICE_MODE_NONE);

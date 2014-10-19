@@ -16,6 +16,7 @@ import main.wardrobe.entity.Apparel;
 import main.wardrobe.service.WardrobeManager;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class MyActivity extends TabActivity {
     /**
@@ -24,18 +25,13 @@ public class MyActivity extends TabActivity {
     final String DIR_SD = ".Apparel";
     final String FILENAMETAG = "deficon";
     final String FILENAME = "basa";
-    String experimentalPath = null;
     TextView tvWeather;
-    static Bitmap icon;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        try {
 //            writeObject(new ObjectOutputStream(openFileOutput(FILENAMETAG, MODE_PRIVATE)), BitmapFactory.decodeResource(getResources(), R.drawable.ex));
-
-            experimentalPath = getFilesDir() + "/" + FILENAMETAG;
-            icon = BitmapFactory.decodeResource(getResources(), R.drawable.ex);
 //        }
 //
 //        catch (Exception e) {
@@ -54,13 +50,28 @@ public class MyActivity extends TabActivity {
 //        } catch (IOException e) {
 //
         //TODO delete inicializ
+        String [] strings1 = {"В унтверситет", "В школу"};
+        String [] strings2 = {"Спорт", "В бар"};
+        Apparel [] apparels = new Apparel[5];
+        apparels[0] = new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 5, "DG, коллекция 2050 года", Arrays.asList(strings1));
+        apparels[0].addTarget("Бал");
+        apparels[0].setInWash(true);
 
-
-        WardrobeManager.getInstance().addApparel(new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 5, "DG, коллекция 2050 года"));
-        WardrobeManager.getInstance().addApparel(new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 5, "Марвел студио"));
-        WardrobeManager.getInstance().addApparel(new Apparel(Integer.toString(R.drawable.head), Category.DRESS, 1, "Платье моей мамы"));
-        WardrobeManager.getInstance().addApparel(new Apparel(Integer.toString(R.drawable.trousers), Category.TROUSERS, 2, "Мои любимые штанны"));
-        WardrobeManager.getInstance().addApparel(new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 3, "..."));
+        apparels[1] = new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 5, "Марвел студио", Arrays.asList(strings2));
+        apparels[1].addTarget("Спорт");
+        apparels[1].setInWash(false);
+        apparels[2] = new Apparel(Integer.toString(R.drawable.head), Category.DRESS, 1, "Платье моей мамы", Arrays.asList(strings1));
+        apparels[2].addTarget("Спорт");
+        apparels[2].setInWash(false);
+        apparels[3] = new Apparel(Integer.toString(R.drawable.trousers), Category.TROUSERS, 2, "Мои любимые штанны", Arrays.asList(strings1));
+        apparels[3].addTarget("Бал");
+        apparels[3].setInWash(true);
+        apparels[4] = new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 3, "...", Arrays.asList(strings2));
+        apparels[4].addTarget("Бал");
+        apparels[4].setInWash(true);
+        for (int i = 0; i < 5; i++) {
+            WardrobeManager.getInstance().addApparel(apparels[i]);
+        }
 
         TabHost.TabSpec tab1 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_auto_find));
         TabHost.TabSpec tab2 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_catalog));
@@ -138,7 +149,6 @@ public class MyActivity extends TabActivity {
         sdPath.mkdirs();
         // формируем объект File, который содержит путь к файлу
         File sdFile = new File(sdPath, FILENAMETAG);
-        experimentalPath = sdFile.getAbsolutePath();
         try {
             // открываем поток для записи
             ObjectOutputStream bw = new ObjectOutputStream(new FileOutputStream(sdFile));

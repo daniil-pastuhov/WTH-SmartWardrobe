@@ -2,8 +2,6 @@ package by.SmartWardrobe;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,10 +31,10 @@ public class Tab2Activity  extends Activity
 
         lst.setAdapter(adapterMain);
         final List<Apparel> emptyList = new ArrayList<Apparel>();
-        final Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.backspace);
-        final Apparel backing = new Apparel("...", myBitmap, Category.OTHER, 0, "...");
+        final Apparel backing = Apparel.getEmptyApparel(Integer.toString(R.drawable.backspace));
         emptyList.add(0, backing);
         final ListViewAdapter adapterEmpty = new ListViewAdapter(activity, R.layout.listview_item, emptyList);
+        adapterEmpty.setResources(getResources());
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -49,6 +47,7 @@ public class Tab2Activity  extends Activity
                         if (!tempList.get(0).equals(backing))
                             tempList.add(0, backing);
                         ListViewAdapter adapter = new ListViewAdapter(activity, R.layout.listview_item, tempList);
+                        adapter.setResources(getResources());
                         lst.setAdapter(adapter);
                     }
                     isMainMenu = false;

@@ -1,7 +1,6 @@
 package by.SmartWardrobe;
 
 import android.app.Activity;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
@@ -9,15 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import by.idea.SmartWardrobe.R;
-import main.constants.Category;
 import main.wardrobe.entity.Apparel;
 import main.wardrobe.service.WardrobeManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tab4Activity extends Activity {
     ListView list1, list2;
@@ -30,13 +26,7 @@ public class Tab4Activity extends Activity {
 
         setContentView(R.layout.to_wash_layout);
 
-//        apparelList = WardrobeManager.getInstance().getDirty();
-        apparelList = new ArrayList<Apparel>(Arrays.asList(
-                new Apparel("1", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
-                new Apparel("2", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
-                new Apparel("3", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
-                new Apparel("4", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc")
-        ));
+        apparelList = WardrobeManager.getInstance().getDirty();
 
         // Locate the ListView in listview_main.xml
         list1 = (ListView) findViewById(R.id.lvToWash);
@@ -104,12 +94,7 @@ public class Tab4Activity extends Activity {
             }
         });
 
-        washList = new ArrayList<Apparel>(Arrays.asList(
-                new Apparel("1", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
-                new Apparel("2", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
-                new Apparel("3", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc"),
-                new Apparel("4", BitmapFactory.decodeResource(getResources(), R.drawable.ex), Category.SWEATER, 3, "desc")
-        ));
+        washList = WardrobeManager.getInstance().getNotInWash();
 
         // Locate the ListView in listview_main.xml
         list2 = (ListView) findViewById(R.id.lvFromWashWash);

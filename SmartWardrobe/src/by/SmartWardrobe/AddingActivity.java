@@ -16,9 +16,7 @@ import main.wardrobe.service.WardrobeManager;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class AddingActivity extends Activity {
 
@@ -95,8 +93,11 @@ public class AddingActivity extends Activity {
                     String minT = edtMinT.getText().toString();
                     String maxT = edtMaxT.getText().toString();
                     String descr = edtDescr.getText().toString();
-
-                    Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat),3, descr);
+                    List<String> list = new ArrayList<String>();
+                    Iterator<String> it = targets.iterator();
+                    while (it.hasNext())
+                        list.add(it.next());
+                    Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat),3, descr, list);
                     WardrobeManager.getInstance().addApparel(newApparel);
 
                     sp.setSelection(0);

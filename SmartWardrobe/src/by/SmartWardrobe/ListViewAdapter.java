@@ -1,6 +1,8 @@
 package by.SmartWardrobe;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +18,13 @@ import java.util.List;
 public class ListViewAdapter extends ArrayAdapter<Apparel> {
     // Declare Variables
     Context context;
+    Resources resources;
     LayoutInflater inflater;
     List<Apparel> apparelList;
     private SparseBooleanArray mSelectedItemsIds;
-
+    public void setResources(Resources s) {
+        resources = s;
+    }
     public ListViewAdapter(Context context, int resourceId,
                            List<Apparel> apparelList) {
         super(context, resourceId, apparelList);
@@ -55,7 +60,7 @@ public class ListViewAdapter extends ArrayAdapter<Apparel> {
         // Capture position and set to the ImageView
 //        holder.photo.setImageBitmap(BitmapFactory.decodeFile(apparelList.get(position).getImagePath()));
         //TODO fix it!
-        holder.photo.setImageBitmap(MyActivity.icon);
+        holder.photo.setImageBitmap(BitmapFactory.decodeResource(resources, Integer.parseInt(apparelList.get(position).getImagePath())));
         return view;
     }
 
