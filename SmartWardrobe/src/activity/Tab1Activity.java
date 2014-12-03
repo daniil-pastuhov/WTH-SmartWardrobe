@@ -1,13 +1,14 @@
-package by.SmartWardrobe;
+package activity;
 
+import adapter.ListViewAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import by.idea.SmartWardrobe.R;
-import main.constants.Category;
-import main.wardrobe.entity.Apparel;
-import main.wardrobe.service.WardrobeManager;
+import constants.Category;
+import data.Apparel;
+import data.WardrobeManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;

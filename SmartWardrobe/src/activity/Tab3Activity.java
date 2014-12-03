@@ -1,5 +1,6 @@
-package by.SmartWardrobe;
+package activity;
 
+import adapter.ListViewAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import by.idea.SmartWardrobe.R;
-import main.wardrobe.entity.Apparel;
+import data.Apparel;
 
 import java.util.ArrayList;
 import java.util.List;

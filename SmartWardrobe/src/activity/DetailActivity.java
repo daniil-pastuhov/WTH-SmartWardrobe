@@ -1,4 +1,4 @@
-package by.SmartWardrobe;
+package activity;
 
 import android.app.Activity;
 import android.content.Intent;

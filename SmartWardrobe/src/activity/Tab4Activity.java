@@ -1,5 +1,6 @@
-package by.SmartWardrobe;
+package activity;
 
+import adapter.PairListViewAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
@@ -9,8 +10,8 @@ import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.ListView;
 import by.idea.SmartWardrobe.R;
-import main.wardrobe.entity.Apparel;
-import main.wardrobe.service.WardrobeManager;
+import data.Apparel;
+import data.WardrobeManager;
 
 import java.util.ArrayList;
 import java.util.List;

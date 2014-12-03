@@ -1,8 +1,7 @@
-package main.wardrobe.repository;
+package data.repository;
 
-import main.wardrobe.entity.Apparel;
+import data.Apparel;
 
-import java.io.ObjectInputStream;
 import java.util.List;
 
 /**

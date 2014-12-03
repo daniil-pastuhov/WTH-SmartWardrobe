@@ -1,13 +1,12 @@
-package main.wardrobe.service;
+package data;
+
+import data.repository.ApparelRepository;
+import data.repository.ApparelRepositoryCap;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
-
-import main.wardrobe.entity.Apparel;
-import main.wardrobe.repository.ApparelRepository;
-import main.wardrobe.repository.ApparelRepositoryCap;
 
 public class WardrobeManager {
     public static final String REPO_NAME = "";

@@ -1,4 +1,4 @@
-package by.SmartWardrobe;
+package activity;
 
 import android.app.TabActivity;
 import android.content.Intent;
@@ -11,9 +11,10 @@ import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TextView;
 import by.idea.SmartWardrobe.R;
-import main.constants.Category;
-import main.wardrobe.entity.Apparel;
-import main.wardrobe.service.WardrobeManager;
+import constants.Category;
+import data.Apparel;
+import data.WardrobeManager;
+import tasks.FetchWeatherTask;
 
 import java.io.*;
 import java.util.Arrays;

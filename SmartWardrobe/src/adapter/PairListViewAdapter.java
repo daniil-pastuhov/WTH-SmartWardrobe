@@ -1,12 +1,9 @@
-package by.SmartWardrobe;
+package adapter;
 
 import android.content.Context;
-import android.view.Menu;
+import data.Apparel;
 
 import java.util.List;
-
-import by.idea.SmartWardrobe.R;
-import main.wardrobe.entity.Apparel;
 
 /**
  * Created by TDiva on 19.10.2014.

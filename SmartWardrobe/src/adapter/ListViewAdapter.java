@@ -1,4 +1,4 @@
-package by.SmartWardrobe;
+package adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import by.idea.SmartWardrobe.R;
-import main.wardrobe.entity.Apparel;
+import data.Apparel;
 
 import java.util.List;
 

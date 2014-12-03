@@ -1,8 +1,8 @@
-package main.wardrobe.entity;
+package data;
 
 
 import android.graphics.Bitmap;
-import main.constants.Category;
+import constants.Category;
 
 import java.io.Serializable;
 import java.text.DateFormat;
