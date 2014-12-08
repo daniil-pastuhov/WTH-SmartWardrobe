@@ -42,9 +42,50 @@
                 android:text="Следующий вариант"
                 android:id="@+id/btnChange"/>
     </LinearLayout>
-    <ListView
+    <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lvTodaySuit"/>
+            android:id="@+id/progressBar" android:layout_gravity="center" android:visibility="visible"/>
+    <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" android:id="@+id/trHead">
+            <AdapterViewFlipper
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/avfHead"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" android:id="@+id/trBody">
+            <AdapterViewFlipper
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/avfUnderBody"/>
+            <AdapterViewFlipper
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/avfBodyOut"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" android:id="@+id/tbPants">
+            <AdapterViewFlipper
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/avfPants"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" android:id="@+id/tbBoots">
+            <AdapterViewFlipper
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/avfBoots"/>
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>

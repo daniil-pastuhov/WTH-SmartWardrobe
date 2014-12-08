@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ListView
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:background="@drawable/edges_small"
-        android:id="@+id/list_of_categories"/>
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <Button
+                android:id="@+id/btnBack"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_back"
+                android:textStyle="italic"
+                android:textColor="@android:color/white"
+                android:onClick="onBackClick"/>
+
+        <ListView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@drawable/edges_small"
+                android:id="@+id/list_of_categories"/>
+</LinearLayout>
+

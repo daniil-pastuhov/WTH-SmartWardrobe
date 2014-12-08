@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class Tab3Activity  extends Activity
+public class SearchActivity extends Activity
 {
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,7 @@ public class Tab3Activity  extends Activity
                     if (list != null && list.size() != 0) {
                         ListView listView = (ListView) findViewById(R.id.lvFounded);
 
-                        ListViewAdapter listviewadapter = new ListViewAdapter(getApplicationContext(), R.layout.listview_item, list);
-                        listviewadapter.setResources(getResources());
+                        ListViewAdapter listviewadapter = new ListViewAdapter(SearchActivity.this, R.layout.listview_item);
                         // Binds the Adapter to the ListView
                         listView.setAdapter(listviewadapter);
                         listView.setChoiceMode(ListView.CHOICE_MODE_NONE);

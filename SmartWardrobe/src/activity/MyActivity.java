@@ -12,12 +12,16 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import by.idea.SmartWardrobe.R;
 import constants.Category;
+import constants.Constants;
+import constants.Style;
 import data.Apparel;
 import data.WardrobeManager;
 import tasks.FetchWeatherTask;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 public class MyActivity extends TabActivity {
     /**
@@ -53,55 +57,59 @@ public class MyActivity extends TabActivity {
         //TODO delete inicializ
         String [] strings1 = {"В унтверситет", "В школу"};
         String [] strings2 = {"Спорт", "В бар"};
-        Apparel [] apparels = new Apparel[5];
-        apparels[0] = new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 5, "DG, коллекция 2050 года", Arrays.asList(strings1));
-        apparels[0].addTarget("Бал");
-        apparels[0].setInWash(true);
+        Apparel[] apparels = new Apparel[3];
+        String filePath = Constants.getHomeDirectory();
+        apparels[0] = new Apparel(filePath + "head.jpg", "Самое модная шапка", "45", "Зелёная", Category.HEADDRESS, new HashSet<>(new ArrayList<Style>() {{
+            add(Style.DAILY);
+        }}), new LinkedList<String>() {{
+            add("Красивый");
+        }}, 18, 25, "25-06-1994", "25-06-1994");
+        apparels[0].setWearProgress(20);
 
-        apparels[1] = new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 5, "Марвел студио", Arrays.asList(strings2));
-        apparels[1].addTarget("Спорт");
-        apparels[1].setInWash(false);
-        apparels[2] = new Apparel(Integer.toString(R.drawable.head), Category.DRESS, 1, "Платье моей мамы", Arrays.asList(strings1));
-        apparels[2].addTarget("Спорт");
-        apparels[2].setInWash(false);
-        apparels[3] = new Apparel(Integer.toString(R.drawable.trousers), Category.TROUSERS, 2, "Мои любимые штанны", Arrays.asList(strings1));
-        apparels[3].addTarget("Бал");
-        apparels[3].setInWash(true);
-        apparels[4] = new Apparel(Integer.toString(R.drawable.ex), Category.SHIRT, 3, "...", Arrays.asList(strings2));
-        apparels[4].addTarget("Бал");
-        apparels[4].setInWash(true);
-        for (int i = 0; i < 5; i++) {
+        apparels[1] = new Apparel(filePath + "ex.jpg", "рубашка", "М", "Синяя", Category.SHIRT, new HashSet<>(new ArrayList<Style>() {{
+            add(Style.DAILY);
+        }}), new LinkedList<String>() {{
+            add("Подарок");
+        }}, 10, 20, "25-07-1994", "25-07-1994");
+        apparels[1].setWearProgress(99);
+        apparels[2] = new Apparel(filePath + "trousers.jpg", "Любимые брюки", "48-52", "Темно-синие", Category.TROUSERS, new HashSet<>(new ArrayList<Style>() {{
+            add(Style.HOME);
+        }}), new LinkedList<String>() {{
+            add("Школьные ещё");
+        }}, -1, 25, "25-06-1994", "25-06-1994");
+        for (int i = 0; i < 3; i++) {
             WardrobeManager.getInstance().addApparel(apparels[i]);
         }
 
-        TabHost.TabSpec tab1 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_auto_find));
-        TabHost.TabSpec tab2 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_catalog));
-        TabHost.TabSpec tab3 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_find_by_teg));
-        TabHost.TabSpec tab4 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_find_to_wash));
-        TabHost.TabSpec tab5 = tabHost.newTabSpec(getString(by.idea.SmartWardrobe.R.string.main_menu_pack_to_trip));
+        TabHost.TabSpec tab1 = tabHost.newTabSpec(getString(R.string.main_menu_auto_find));
+        TabHost.TabSpec tab2 = tabHost.newTabSpec(getString(R.string.main_menu_catalog));
+        TabHost.TabSpec tab3 = tabHost.newTabSpec(getString(R.string.main_menu_find_by_teg));
+        TabHost.TabSpec tab4 = tabHost.newTabSpec(getString(R.string.main_menu_find_to_wash));
+        TabHost.TabSpec tab5 = tabHost.newTabSpec(getString(R.string.main_menu_pack_to_trip));
 
         // Set the Tab name and Activity
         // that will be opened when particular Tab will be selected
         tab1.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_auto_find));
-        tab1.setContent(new Intent(this, Tab1Activity.class));
+        tab1.setContent(new Intent(this, SuitToDayActivity.class));
 
         tab2.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_catalog));
-        tab2.setContent(new Intent(this, Tab2Activity.class));
+        tab2.setContent(new Intent(this, CatalogActivity.class));
 
         tab3.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_find_by_teg));
-        tab3.setContent(new Intent(this, Tab3Activity.class));
+        tab3.setContent(new Intent(this, SearchActivity.class));
 
         tab4.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_find_to_wash));
-        tab4.setContent(new Intent(this, Tab4Activity.class));
+        tab4.setContent(new Intent(this, WashBasketActivity.class));
 
         tab5.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_pack_to_trip));
-        tab5.setContent(new Intent(this, Tab5Activity.class));
-
-        tabHost.addTab(tab1);
-        tabHost.addTab(tab2);
-        tabHost.addTab(tab3);
-        tabHost.addTab(tab4);
-        tabHost.addTab(tab5);
+        tab5.setContent(new Intent(this, ToTripActivity.class));
+        startActivity(new Intent(this, CatalogActivity.class));
+        //TODO
+//        tabHost.addTab(tab1);
+//        tabHost.addTab(tab2);
+//        tabHost.addTab(tab3);
+//        tabHost.addTab(tab4);
+//        tabHost.addTab(tab5);
 
     }
 

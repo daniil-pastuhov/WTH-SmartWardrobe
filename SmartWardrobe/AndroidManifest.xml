@@ -14,11 +14,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="activity.Tab1Activity" android:label="Tab1Activity1"/>
-        <activity android:name="activity.Tab2Activity" android:label="Tab2Activity"/>
-        <activity android:name="activity.Tab3Activity" android:label="Tab3Activity"/>
-        <activity android:name="activity.Tab4Activity" android:label="Tab4Activity"/>
-        <activity android:name="activity.Tab5Activity" android:label="Tab5Activity"/>
+        <activity android:name="activity.SuitToDayActivity" android:label="Tab1Activity1"/>
+        <activity android:name="activity.CatalogActivity" android:label="Tab2Activity"/>
+        <activity android:name="activity.SearchActivity" android:label="Tab3Activity"/>
+        <activity android:name="activity.WashBasketActivity" android:label="Tab4Activity"/>
+        <activity android:name="activity.ToTripActivity" android:label="Tab5Activity"/>
         <activity android:name="activity.DetailActivity" android:label="Apparel detail"/>
         <activity android:name="activity.AddingActivity" android:label="Adding new apparel"/>
     </application>

@@ -54,7 +54,7 @@ public class WardrobeManager {
         return repository.getByCategory(category);
     }
 
-    public Apparel getById(Long id) {
+    public Apparel getById(Integer id) {
         return repository.getById(id);
     }
 

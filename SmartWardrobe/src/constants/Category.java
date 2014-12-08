@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Category {
+    HEADDRESS("Головные уборы"),
     SHOES("Обувь"),
     DRESS("Платья"),
     TROUSERS("Брюки"),

@@ -2,65 +2,102 @@ package data;
 
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import constants.Category;
+import constants.Style;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-public class Apparel implements Serializable {
+public class Apparel {
 
-    public static long idCounter = 0l;
-    private static DateFormat df = new SimpleDateFormat("MMM dd, yyyy HH:mm");
+    public static int idCounter = 0;
+    private static DateFormat df = new SimpleDateFormat("Mmm dd, yyyy");
 
 
-    public static long getNextId() {
+    public static int getNextId() {
         return idCounter++;
     }
 
-    private Long id;
+    private Integer id;
     private String imagePath;
+    private String name;
+    private String size; //String: different format of closes
+    private String color;
     private Category category;
-    private Set<String> targets;
-    private Boolean inWash;
-    private Integer howWarm;
-    private Integer wear;
-    private Date lastWahsedDate;
-    private Date lastWornDate;
-    private String description;
+    private HashSet<Style> styles;
+    private Set<String> tags;
+    private Integer minT; //min temperature
+    private Integer maxT;
+    private String date_of_last_wearing;
+    private String date_of_buying;
+    private Bitmap cover;
+    private int wearProgress = 0;
 
-    public Apparel(Long id) {
+    public Apparel(Integer id) {
         this.id = id;
+    }
+
+    public HashSet<Style> getStyles() {
+        return styles;
+    }
+
+    public Apparel(String imagePath, String name, String size, String color, Category category, HashSet<Style> styles, List<String> tags, Integer minT, Integer maxT, String date_of_last_wearing, String date_of_buying) {
+        this.imagePath = imagePath;
+        id = getNextId();
+        this.name = name;
+        this.size = size;
+        this.styles = styles;
+        cover = loadCover(imagePath);
+        this.color = color;
+        this.category = category;
+        this.tags = new HashSet<>();
+        this.tags.addAll(tags);
+        this.minT = minT;
+        this.maxT = maxT;
+        this.date_of_last_wearing = date_of_last_wearing;
+        this.date_of_buying = date_of_buying;
+    }
+
+    private Bitmap loadCover(String imagePath) {
+        return BitmapFactory.decodeFile(imagePath);
     }
 
     @Deprecated
-    public Apparel(String name, Bitmap image, Category category, Integer howWarm, String description) {
-        id = getNextId();
-    }
-    static public Apparel getEmptyApparel(String s) {
-        return new Apparel(s, Category.OTHER, 0, "...", Arrays.asList(""));
-    }
-    public Apparel(String imagePath, Category category, Integer howWarm, String description, List<String> targets) {
+    public Apparel(Integer ID, String imagePath, String name, String size, String color, Category category, HashSet<Style> styles, List<String> tags, Integer minT, Integer maxT, String date_of_last_wearing, String date_of_buying) {
         this.imagePath = imagePath;
-        this.howWarm = howWarm;
-        this.category = category;
-        this.description = description;
-        inWash = false;
-        wear = 0;
         id = getNextId();
-        this.targets = new HashSet<String>();
-        for (int i = 0; i < targets.size(); i++) {
-            this.targets.add(targets.get(i));
-        }
+        this.name = name;
+        this.size = size;
+        this.styles = styles;
+        this.id = ID;
+        this.color = color;
+        this.category = category;
+        this.tags = new HashSet<>();
+        this.tags.addAll(tags);
+        this.minT = minT;
+        this.maxT = maxT;
+        this.date_of_last_wearing = date_of_last_wearing;
+        this.date_of_buying = date_of_buying;
     }
 
-    public Long getId() {
-        return id;
+    public Bitmap getCover() {
+        return cover;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCover(Bitmap cover) {
+        this.cover = cover;
+    }
+
+    public int getWearProgress() {
+        return wearProgress;
+    }
+
+    public void setWearProgress(int wearProgress) {
+        this.wearProgress = wearProgress;
     }
 
     public String getImagePath() {
@@ -71,6 +108,30 @@ public class Apparel implements Serializable {
         this.imagePath = imagePath;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -79,77 +140,48 @@ public class Apparel implements Serializable {
         this.category = category;
     }
 
-    public Boolean getInWash() {
-        return inWash;
+    public Set<String> getTags() {
+        return tags;
     }
 
-    public void setInWash(Boolean inWash) {
-        this.inWash = inWash;
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getHowWarm() {
-        return howWarm;
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
     }
 
-    public void setHowWarm(Integer howWarm) {
-        this.howWarm = howWarm;
+    public Integer getMinT() {
+        return minT;
     }
 
-    public Integer getWear() {
-        return wear;
+    public void setMinT(Integer minT) {
+        this.minT = minT;
     }
 
-    public void setWear(Integer wear) {
-        this.wear = wear;
+    public Integer getMaxT() {
+        return maxT;
     }
 
-    public Date getLastWahsedDate() {
-        return lastWahsedDate;
+    public void setMaxT(Integer maxT) {
+        this.maxT = maxT;
     }
 
-    public String getLastWashedDateString() {
-        return lastWahsedDate == null ? "" : df.format(lastWahsedDate);
+    public String getDate_of_last_wearing() {
+        return date_of_last_wearing;
     }
 
-    public void setLastWahsedDate(Date lastWahsedDate) {
-        this.lastWahsedDate = lastWahsedDate;
+    public void setDate_of_last_wearing(String date_of_last_wearing) {
+        this.date_of_last_wearing = date_of_last_wearing;
     }
 
-    public Date getLastWornDate() {
-        return lastWornDate;
+    public String getDate_of_buying() {
+        return date_of_buying;
     }
 
-    public String getLastWornDateString() {
-        return lastWornDate == null ? "" : df.format(lastWornDate);
-    }
-
-    public void setLastWornDate(Date lastWornDate) {
-        this.lastWornDate = lastWornDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<String> getTargets() {
-        return targets;
-    }
-
-    public void setTargets(Set<String> targets) {
-        this.targets = targets;
-    }
-    
-    public void addTarget(String s) {
-        this.targets.add(s);
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
+    public void setDate_of_buying(String date_of_buying) {
+        this.date_of_buying = date_of_buying;
     }
 
     @Override

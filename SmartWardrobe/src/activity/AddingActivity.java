@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.*;
 import by.idea.SmartWardrobe.R;
 import constants.Category;
-import data.Apparel;
-import data.WardrobeManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -97,8 +95,8 @@ public class AddingActivity extends Activity {
                     Iterator<String> it = targets.iterator();
                     while (it.hasNext())
                         list.add(it.next());
-                    Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat),3, descr, list);
-                    WardrobeManager.getInstance().addApparel(newApparel);
+                    //Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat),3, descr, list);
+                    // WardrobeManager.getInstance().addApparel(newApparel);
 
                     sp.setSelection(0);
                     edtMinT.setText("");

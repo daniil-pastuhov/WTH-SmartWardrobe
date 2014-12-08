@@ -1,101 +1,252 @@
 package adapter;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.BitmapFactory;
-import android.util.SparseBooleanArray;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import by.idea.SmartWardrobe.R;
+import constants.Style;
 import data.Apparel;
+import data.DBHelper;
+import interfaces.TaskSuccessListener;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 
-public class ListViewAdapter extends ArrayAdapter<Apparel> {
-    // Declare Variables
-    Context context;
-    Resources resources;
-    LayoutInflater inflater;
-    List<Apparel> apparelList;
-    private SparseBooleanArray mSelectedItemsIds;
-    public void setResources(Resources s) {
-        resources = s;
+public final class ListViewAdapter extends ArrayAdapter<Apparel> implements TaskSuccessListener {
+
+    private ArrayList<Apparel> mObjects;
+    private ArrayList<Apparel> mOriginalValues;
+    private LayoutInflater inflater;
+    private Filter filter;
+    private Object lock = new Object();
+    private Activity activity;
+    private final int ANIMATION_DURATION = 200;
+
+    public ListViewAdapter(Activity activity, int resource) {
+        super(activity, resource);
+        this.activity = activity;
+        this.inflater = LayoutInflater.from(activity);
+        mObjects = new ArrayList<Apparel>();
+        DBHelper.getInstance(getContext()).getAll(this);
     }
-    public ListViewAdapter(Context context, int resourceId,
-                           List<Apparel> apparelList) {
-        super(context, resourceId, apparelList);
-        mSelectedItemsIds = new SparseBooleanArray();
-        this.context = context;
-        this.apparelList = apparelList;
-        inflater = LayoutInflater.from(context);
+
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder = null;
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.listview_item, parent, false);
+            holder = createViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+            if (holder.needInvalidate) {
+                convertView = inflater.inflate(R.layout.listview_item, parent, false);
+                holder = createViewHolder(convertView);
+                convertView.setTag(holder);
+            }
+        }
+
+        Apparel apparel = getItem(position);
+        if (apparel != null) {
+            holder.name.setText(apparel.getName());
+            holder.date.setText(apparel.getDate_of_last_wearing());
+            if (apparel.getCover() != null) {
+                holder.cover.setImageBitmap(apparel.getCover());
+            } else {
+                holder.cover.setImageResource(R.drawable.fallback_cover);
+            }
+            holder.wearProgress.setVisibility(View.VISIBLE);
+            long progress = apparel.getWearProgress();
+            holder.wearProgress.setProgress((int) progress);
+            holder.styles.setText(Style.parseToString(apparel.getStyles()));
+            holder.temperature.setText(apparel.getMinT() + activity.getString(R.string.deg) + " - " + apparel.getMaxT() + activity.getString(R.string.deg));
+        }
+        convertView.setTag(holder);
+        return convertView;
+    }
+
+    private ViewHolder createViewHolder(View convertView) {
+        ViewHolder holder;
+        holder = new ViewHolder();
+        holder.name = (TextView) convertView.findViewById(R.id.tvApparelName);
+        holder.styles = (TextView) convertView.findViewById(R.id.tvApparelStyle);
+        holder.temperature = (TextView) convertView.findViewById(R.id.tvApparelTemperature);
+        holder.cover = (ImageView) convertView.findViewById(R.id.cover);
+        holder.date = (TextView) convertView.findViewById(R.id.tvAppareldates);
+        holder.wearProgress = (ProgressBar) convertView.findViewById(R.id.progressBar);
+        return holder;
     }
 
     private class ViewHolder {
-        TextView description;
-        TextView dateOfWashing;
-        ImageView photo;
+        TextView name;
+        TextView temperature;
+        TextView date;
+        TextView styles;
+        ImageView cover;
+        ProgressBar wearProgress;
+        boolean needInvalidate = false;
     }
 
-    public View getView(int position, View view, ViewGroup parent) {
-        final ViewHolder holder;
-        if (view == null) {
-            holder = new ViewHolder();
-            view = inflater.inflate(R.layout.listview_item, null);
-            // Locate the TextViews in listview_item.xml
-            holder.description = (TextView) view.findViewById(R.id.matirial);
-            holder.dateOfWashing = (TextView) view.findViewById(R.id.washing);
-            // Locate the ImageView in listview_item.xml
-            holder.photo = (ImageView) view.findViewById(R.id.photo);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
+    @Override
+    public void success(ArrayList<Apparel> result) {
+        insertData(result);
+    }
+
+    private void insertData(ArrayList<Apparel> apparels) {
+        synchronized (lock) {
+            if (mOriginalValues != null) {
+                mOriginalValues.addAll(apparels);
+            }
+            mObjects.addAll(apparels);
+            redraw();
         }
-        // Capture position and set to the TextViews
-        holder.description.setText(apparelList.get(position).getDescription());
-        holder.dateOfWashing.setText(apparelList.get(position).getLastWashedDateString());
-        // Capture position and set to the ImageView
-//        holder.photo.setImageBitmap(BitmapFactory.decodeFile(apparelList.get(position).getImagePath()));
-        //TODO fix it!
-        holder.photo.setImageBitmap(BitmapFactory.decodeResource(resources, Integer.parseInt(apparelList.get(position).getImagePath())));
-        return view;
+    }
+
+    private void redraw() {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                notifyDataSetChanged();
+            }
+        });
+    }
+
+    @Override
+    public void add(Apparel object) {
+        synchronized (lock) {
+            if (mOriginalValues != null) {
+                mOriginalValues.add(object);
+            }
+            mObjects.add(object);
+            redraw();
+        }
+    }
+
+    @Override
+    public void insert(Apparel object, int index) {
+        synchronized (lock) {
+            if (mOriginalValues != null) {
+                mOriginalValues.add(index, object);
+            }
+            if (mObjects == null) {
+                mObjects = new ArrayList<>();
+            }
+            mObjects.add(index, object);
+            redraw();
+        }
+    }
+
+
+    @SuppressLint("NewApi")
+    @Override
+    public void addAll(Apparel... items) {
+        super.addAll(items);
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public void addAll(Collection<? extends Apparel> collection) {
+        synchronized (lock) {
+            if (mOriginalValues != null) {
+                mOriginalValues.addAll(collection);
+            }
+            mObjects.addAll(collection);
+            redraw();
+        }
+    }
+
+    @Override
+    public void clear() {
+        synchronized (lock) {
+            if (mOriginalValues != null) {
+                mOriginalValues.clear();
+            }
+            mObjects.clear();
+            redraw();
+        }
     }
 
     @Override
     public void remove(Apparel object) {
-        apparelList.remove(object);
-        notifyDataSetChanged();
+        synchronized (lock) {
+            if (mOriginalValues != null) {
+                mOriginalValues.remove(object);
+            }
+            mObjects.remove(object);
+            redraw();
+        }
     }
 
-    public List<Apparel> getWorldPopulation() {
-        return apparelList;
+    @Override
+    public int getCount() {
+        synchronized (lock) {
+            if (mObjects == null) {
+                return 0;
+            }
+            return mObjects.size();
+        }
     }
 
-    public void toggleSelection(int position) {
-        selectView(position, !mSelectedItemsIds.get(position));
+    @Override
+    public Apparel getItem(int position) {
+        synchronized (lock) {
+            return mObjects.get(position);
+        }
     }
 
-    public void removeSelection() {
-        mSelectedItemsIds = new SparseBooleanArray();
-        notifyDataSetChanged();
+    @Override
+    public int getPosition(Apparel item) {
+        synchronized (lock) {
+            return mObjects.indexOf(item);
+        }
     }
 
-    public void selectView(int position, boolean value) {
-        if (value)
-            mSelectedItemsIds.put(position, value);
-        else
-            mSelectedItemsIds.delete(position);
-        notifyDataSetChanged();
+    @Override
+    public Filter getFilter() {
+        if (filter == null) {
+            filter = new ResultFilter();
+        }
+        return filter;
     }
 
-    public int getSelectedCount() {
-        return mSelectedItemsIds.size();
-    }
+    private class ResultFilter extends Filter {
 
-    public SparseBooleanArray getSelectedIds() {
-        return mSelectedItemsIds;
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+            String prefix = constraint.toString().toLowerCase();
+            if (mOriginalValues == null) {
+                mOriginalValues = new ArrayList<>(mObjects);
+            }
+            if (prefix == null || prefix.length() == 0) {
+                ArrayList<Apparel> list = new ArrayList<>(mOriginalValues);
+                results.values = list;
+                results.count = list.size();
+            } else {
+                ArrayList<Apparel> list = new ArrayList<>(mOriginalValues);
+                ArrayList<Apparel> nlist = new ArrayList<>();
+                int count = list.size();
+                for (int i = 0; i < count; i++) {
+                    Apparel data = list.get(i);
+                    String value = data.toString();
+                    if (value.contains(prefix)) {
+                        nlist.add(data);
+                    }
+                    results.values = nlist;
+                    results.count = nlist.size();
+                }
+            }
+            return results;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, final FilterResults results) {
+            mObjects = (ArrayList<Apparel>) results.values;
+            redraw();
+        }
     }
 }
+

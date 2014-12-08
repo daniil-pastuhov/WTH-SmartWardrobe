@@ -1,7 +1,6 @@
 package constants;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Tags {
 
@@ -34,5 +33,23 @@ public class Tags {
 
 	public static void deleteTag(String name) {
 		tags.remove(name);
+	}
+
+	public static List<String> parseString(String s) {
+		StringTokenizer st = new StringTokenizer(s, Constants.tagsSeparator);
+		List<String> res = new ArrayList<>();
+		while (st.hasMoreTokens()) {
+			res.add(st.nextToken());
+		}
+		return res;
+	}
+
+	public static String parseToString(Set<String> tags) {
+		StringBuilder sb = new StringBuilder();
+		for (String tag : tags) {
+			sb.append(tag);
+			sb.append("; ");
+		}
+		return sb.toString();
 	}
 }

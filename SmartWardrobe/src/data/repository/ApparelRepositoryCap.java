@@ -37,7 +37,7 @@ public class ApparelRepositoryCap implements ApparelRepository, Serializable {
     public List<Apparel> getByTarget(String target) {
         List<Apparel> list = new ArrayList<Apparel>();
         for (Apparel ap : getNotInWash()) {
-            if (ap.getTargets().contains(target)) {
+            if (ap.getTags().contains(target)) {
                 list.add(ap);
             }
         }
@@ -47,17 +47,17 @@ public class ApparelRepositoryCap implements ApparelRepository, Serializable {
     @Override
     public List<Apparel> getDirty() {
         List<Apparel> list = new ArrayList<Apparel>();
-        for (Apparel app : clothes) {
-            if (app.getWear() > WEAR_LEVEL) {
-                list.add(app);
-            }
-        }
-        Collections.sort(list, new Comparator<Apparel>() {
-            @Override
-            public int compare(Apparel apparel, Apparel apparel2) {
-                return apparel2.getWear() - apparel.getWear();
-            }
-        });
+//        for (Apparel app : clothes) {
+//            if (app.getWear() > WEAR_LEVEL) {
+//                list.add(app);
+//            }
+//        }
+//        Collections.sort(list, new Comparator<Apparel>() {
+//            @Override
+//            public int compare(Apparel apparel, Apparel apparel2) {
+//                return apparel2.getWear() - apparel.getWear();
+//            }
+//        });
         return list;
     }
 
@@ -120,7 +120,7 @@ public class ApparelRepositoryCap implements ApparelRepository, Serializable {
     }
 
     @Override
-    public Apparel getById(Long id) {
+    public Apparel getById(Integer id) {
         int index = Collections.binarySearch(clothes, new Apparel(id), new Comparator<Apparel>() {
             @Override
             public int compare(Apparel apparel, Apparel apparel2) {
@@ -132,37 +132,37 @@ public class ApparelRepositoryCap implements ApparelRepository, Serializable {
 
     @Override
     public void addApparel(Apparel app) {
-        clothes.add(app);
-        if (app.getInWash()) {
-            wash.add(app);
-        }
-        if (catalog.containsKey(app.getCategory()))
-            catalog.get(app.getCategory()).add(app);
-        else {
-            List<Apparel> list = new ArrayList<Apparel>();
-            list.add(app);
-            catalog.put(app.getCategory(), list);
-        }
+//        clothes.add(app);
+//        if (app.getInWash()) {
+//            wash.add(app);
+//        }
+//        if (catalog.containsKey(app.getCategory()))
+//            catalog.get(app.getCategory()).add(app);
+//        else {
+//            List<Apparel> list = new ArrayList<Apparel>();
+//            list.add(app);
+//            catalog.put(app.getCategory(), list);
+//        }
 
     }
 
     @Override
     public void deleteApparel(Apparel app) {
-        if (app.getInWash()) {
-            wash.remove(app);
-        }
-        catalog.get(app.getCategory()).remove(app);
-        clothes.remove(app);
+//        if (app.getInWash()) {
+//            wash.remove(app);
+//        }
+//        catalog.get(app.getCategory()).remove(app);
+//        clothes.remove(app);
     }
 
     @Override
     public void setWash(Apparel app, boolean flag) {
-        app.setInWash(flag);
-        if (flag) {
-            wash.add(app);
-        } else {
-            wash.remove(app);
-        }
+//        app.setInWash(flag);
+//        if (flag) {
+//            wash.add(app);
+//        } else {
+//            wash.remove(app);
+//        }
     }
 
     @Override

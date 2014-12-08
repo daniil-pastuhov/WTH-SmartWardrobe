@@ -61,8 +61,10 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String> {
         String forecastJsonStr = null;
         String format = "json";
         try {
-            if (!isInternetAvailable())
-                throw new UnsupportedOperationException("Check Internet connection");
+            if (!isInternetAvailable()) {
+                System.err.println("Check Internet connection");
+                cancel(true);
+            }
             final String QUERY_PARAM = "q";
             final String FORMAT_PARAM = "mode";
             final String UNITS_PARAM = "units";

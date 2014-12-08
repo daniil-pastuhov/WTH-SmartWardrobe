@@ -1,61 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:divider="@drawable/layout_divider"
+              android:dividerPadding="4dp"
+              android:minHeight="@dimen/layout_library_height"
+              android:orientation="horizontal"
+              android:showDividers="middle">
 
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="?android:attr/activatedBackgroundIndicator" android:columnCount="2"
-                android:rowCount="1">
-    <ImageView
-            android:id="@+id/photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#000000"
-            android:padding="1dp"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/washing"/>
-    <GridLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" android:columnCount="2" android:rowCount="3">
-        <TextView
-                android:id="@+id/namelabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edges_small"
-                android:text="@string/namelabel" />
-        <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edges_small"
-                android:layout_toRightOf="@+id/namelabel" />
-        <TextView
-                android:id="@+id/matiriallabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/namelabel"
-                android:background="@drawable/edges_small"
-                android:text="@string/materiallabel" />
-        <TextView
-                android:id="@+id/matirial"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/name"
-                 android:background="@drawable/edges_small"
-                android:layout_toRightOf="@+id/matiriallabel" />
-        <TextView
-                android:id="@+id/washinglabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edges_small"
-                android:layout_below="@+id/matiriallabel"
-                android:text="@string/washinglabel" />
-        <TextView
-                android:id="@+id/washing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/washinglabel"
-                 android:background="@drawable/edges_small"
-                android:layout_toRightOf="@+id/washinglabel" />
-    </GridLayout>
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selectable_item_bg"
+            android:paddingLeft="8dp"
+            android:paddingRight="0dp">
 
-</GridLayout>
+        <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:minHeight="48dp">
+
+            <ImageView
+                    android:id="@+id/cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/fallback_cover"/>
+        </FrameLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                <TextView
+                        android:id="@+id/tvApparelName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:layout_weight="1"
+                        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                <TextView
+                        android:id="@+id/tvAppareldates"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            </LinearLayout>
+            <TextView
+                    android:id="@+id/tvApparelTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <TextView
+                    android:id="@+id/tvApparelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="0"
+                    android:indeterminate="false"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

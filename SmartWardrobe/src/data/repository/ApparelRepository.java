@@ -21,7 +21,7 @@ public interface ApparelRepository {
     List<Apparel> getMiddleByTarget(String target);
     List<Apparel> getAccessoriseByTarget(String target);
 
-    Apparel getById(Long id);
+    Apparel getById(Integer id);
     void setWash(Apparel app, boolean flag);
     void addApparel(Apparel app);
     void deleteApparel(Apparel app);

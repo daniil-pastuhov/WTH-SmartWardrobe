@@ -56,7 +56,7 @@
 
     <!--
         Import per project custom build rules if present at the root of the project.
-        This is the place to put custom intermediary targets such as:
+        This is the place to put custom intermediary tags such as:
             -pre-build
             -pre-compile
             -post-compile (This is typically used for code obfuscation.
@@ -70,7 +70,7 @@
 
     <!-- Import the actual build file.
 
-         To customize existing targets, there are two options:
+         To customize existing tags, there are two options:
          - Customize only one target:
              - copy/paste the target into this file, *before* the
                <import> task.

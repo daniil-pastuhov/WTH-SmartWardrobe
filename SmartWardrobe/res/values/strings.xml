@@ -40,5 +40,6 @@
     <string name="textView_minTemp_add">от</string>
     <string name="textView_maxTemp_add">до</string>
     <string name="button_addToWardrobe">Добавить в шкаф!</string>
+    <string name="button_back">Назад</string>
 
 </resources>
