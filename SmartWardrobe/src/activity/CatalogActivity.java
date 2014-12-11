@@ -126,13 +126,9 @@ public class CatalogActivity extends Activity
     private class MainMenuState extends State {
         @Override
         public void onItemClicked(AdapterView adapterView, int i, long l) {
-            showBackButton(true);
-            category = adapterView.getAdapter().getItem(i).toString();
-            List<Apparel> tempList = WardrobeManager.getInstance().getByCategory(category);
-            ListViewAdapter adapter = new ListViewAdapter(CatalogActivity.this, R.layout.listview_item);
-            adapter.addAll(apparels);
-            lst.setAdapter(adapter);
             nextState();
+            state.setCategory(adapterView.getAdapter().getItem(i).toString());
+            state.init();
         }
 
         @Override
