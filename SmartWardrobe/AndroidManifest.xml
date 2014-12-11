@@ -4,18 +4,23 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="14"/>
-    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:theme="@style/Theme1">
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher"
+                 android:theme="@style/BrutalTheme">
 
 
-        <activity android:name="activity.MyActivity"
+        <activity android:name="activity.MainActivity"
                   android:label="@string/app_name" >
+
+        </activity>
+        <activity android:name="activity.SuitToDayActivity" android:label="Tab1Activity1"/>
+        <activity android:name="activity.CatalogActivity"
+                  android:label="@string/title_catalog_activity"
+                  android:theme="@style/BrutalTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="activity.SuitToDayActivity" android:label="Tab1Activity1"/>
-        <activity android:name="activity.CatalogActivity" android:label="Tab2Activity"/>
         <activity android:name="activity.SearchActivity" android:label="Tab3Activity"/>
         <activity android:name="activity.WashBasketActivity" android:label="Tab4Activity"/>
         <activity android:name="activity.ToTripActivity" android:label="Tab5Activity"/>

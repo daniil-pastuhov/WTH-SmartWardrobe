@@ -2,10 +2,7 @@ package activity;
 
 import android.app.TabActivity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
@@ -18,12 +15,11 @@ import data.Apparel;
 import data.WardrobeManager;
 import tasks.FetchWeatherTask;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-public class MyActivity extends TabActivity {
+public class MainActivity extends TabActivity {
     /**
      * Called when the activity is first created.
      */
@@ -55,8 +51,8 @@ public class MyActivity extends TabActivity {
 //        } catch (IOException e) {
 //
         //TODO delete inicializ
-        String [] strings1 = {"В унтверситет", "В школу"};
-        String [] strings2 = {"Спорт", "В бар"};
+        String[] strings1 = {"В унтверситет", "В школу"};
+        String[] strings2 = {"Спорт", "В бар"};
         Apparel[] apparels = new Apparel[3];
         String filePath = Constants.getHomeDirectory();
         apparels[0] = new Apparel(filePath + "head.jpg", "Самое модная шапка", "45", "Зелёная", Category.HEADDRESS, new HashSet<>(new ArrayList<Style>() {{
@@ -103,13 +99,13 @@ public class MyActivity extends TabActivity {
 
         tab5.setIndicator(getString(by.idea.SmartWardrobe.R.string.main_menu_pack_to_trip));
         tab5.setContent(new Intent(this, ToTripActivity.class));
-        startActivity(new Intent(this, CatalogActivity.class));
+//        startActivity(new Intent(this, CatalogActivity.class));
         //TODO
-//        tabHost.addTab(tab1);
-//        tabHost.addTab(tab2);
-//        tabHost.addTab(tab3);
-//        tabHost.addTab(tab4);
-//        tabHost.addTab(tab5);
+        tabHost.addTab(tab1);
+        tabHost.addTab(tab2);
+        tabHost.addTab(tab3);
+        tabHost.addTab(tab4);
+        tabHost.addTab(tab5);
 
     }
 
@@ -133,62 +129,5 @@ public class MyActivity extends TabActivity {
         Intent intent = new Intent(getApplicationContext(), AddingActivity.class);
         startActivity(intent);
     }
-
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-////        try {
-////            ObjectOutputStream os = new ObjectOutputStream(openFileOutput(FILENAME, MODE_PRIVATE));
-////            WardrobeManager.saveToFile(os);
-////            os.close();
-////        } catch (IOException e) {
-////
-////        }
-//    }
-    void writeFileSD() {
-        if (!Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED)) {
-            return;
-        }
-        // получаем путь к SD
-        File sdPath = Environment.getExternalStorageDirectory();
-        // добавляем свой каталог к пути
-        sdPath = new File(sdPath.getAbsolutePath() + "/" + DIR_SD);
-        // создаем каталог
-        sdPath.mkdirs();
-        // формируем объект File, который содержит путь к файлу
-        File sdFile = new File(sdPath, FILENAMETAG);
-        try {
-            // открываем поток для записи
-            ObjectOutputStream bw = new ObjectOutputStream(new FileOutputStream(sdFile));
-            // пишем данные
-            bw.writeObject(BitmapFactory.decodeResource(getResources(), R.drawable.ex));
-            // закрываем поток
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    protected class BitmapDataObject implements Serializable {
-        private static final long serialVersionUID = 111696345129311948L;
-        public byte[] imageByteArray;
-    }
-
-    /** Included for serialization - write this layer to the output stream. */
-    private void writeObject(ObjectOutputStream out, Bitmap bm) throws IOException{
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        BitmapDataObject bitmapDataObject = new BitmapDataObject();
-        bitmapDataObject.imageByteArray = stream.toByteArray();
-
-        out.writeObject(bitmapDataObject);
-        out.close();
-    }
-
-    /** Included for serialization - read this object from the supplied input stream. */
-    private Bitmap readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
-        BitmapDataObject bitmapDataObject = (BitmapDataObject)in.readObject();
-        Bitmap image = BitmapFactory.decodeByteArray(bitmapDataObject.imageByteArray, 0, bitmapDataObject.imageByteArray.length);
-        return image;
-    }
 }
+

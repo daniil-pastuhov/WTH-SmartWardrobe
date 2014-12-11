@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:divider="@drawable/layout_divider"
-              android:dividerPadding="4dp"
+              android:dividerPadding="1dp"
               android:minHeight="@dimen/layout_library_height"
               android:orientation="horizontal"
               android:showDividers="middle">
@@ -17,7 +17,7 @@
             android:paddingRight="0dp">
 
         <FrameLayout
-                android:layout_width="48dp"
+                android:layout_width="52dp"
                 android:layout_height="match_parent"
                 android:minHeight="48dp">
 
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="8dp">
+                android:padding="4dp">
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -53,6 +53,7 @@
                         android:layout_height="0dp"
                         android:layout_width="wrap_content"
                         android:ellipsize="end"
+                        android:textSize="@dimen/name_text_size"
                         android:layout_weight="1"
                         android:textAppearance="?android:attr/textAppearanceLarge"/>
 

@@ -41,5 +41,6 @@
     <string name="textView_maxTemp_add">до</string>
     <string name="button_addToWardrobe">Добавить в шкаф!</string>
     <string name="button_back">Назад</string>
+    <string name="title_catalog_activity">Каталог</string>
 
 </resources>
