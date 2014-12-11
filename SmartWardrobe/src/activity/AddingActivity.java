@@ -95,7 +95,7 @@ public class AddingActivity extends Activity {
                     Iterator<String> it = targets.iterator();
                     while (it.hasNext())
                         list.add(it.next());
-                    //Apparel newApparel = new Apparel(mCurrentPhotoPath, Category.getByType(cat),3, descr, list);
+                    //Apparel newApparel = ne Apparel(mCurrentPhotoPath, Category.getByType(cat),3, descr, list);
                     // WardrobeManager.getInstance().addApparel(newApparel);
 
                     sp.setSelection(0);

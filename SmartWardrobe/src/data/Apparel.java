@@ -69,13 +69,13 @@ public class Apparel {
     @Deprecated
     public Apparel(Integer ID, String imagePath, String name, String size, String color, Category category, HashSet<Style> styles, List<String> tags, Integer minT, Integer maxT, String date_of_last_wearing, String date_of_buying) {
         this.imagePath = imagePath;
-        id = getNextId();
         this.name = name;
         this.size = size;
         this.styles = styles;
         this.id = ID;
         this.color = color;
         this.category = category;
+        cover = loadCover(imagePath);
         this.tags = new HashSet<>();
         this.tags.addAll(tags);
         this.minT = minT;

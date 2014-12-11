@@ -23,7 +23,6 @@ public final class ListViewAdapter extends ArrayAdapter<Apparel> implements Task
     private Filter filter;
     private Object lock = new Object();
     private Activity activity;
-    private final int ANIMATION_DURATION = 200;
 
     public ListViewAdapter(Activity activity, int resource) {
         super(activity, resource);
@@ -57,11 +56,15 @@ public final class ListViewAdapter extends ArrayAdapter<Apparel> implements Task
             } else {
                 holder.cover.setImageResource(R.drawable.fallback_cover);
             }
-            holder.wearProgress.setVisibility(View.VISIBLE);
-            long progress = apparel.getWearProgress();
-            holder.wearProgress.setProgress((int) progress);
+            int progress = apparel.getWearProgress();
+            holder.wearProgress.setProgress(progress);
             holder.styles.setText(Style.parseToString(apparel.getStyles()));
-            holder.temperature.setText(apparel.getMinT() + activity.getString(R.string.deg) + " - " + apparel.getMaxT() + activity.getString(R.string.deg));
+            holder.temperature.setText(apparel.getMinT() + activity.getString(R.string.deg) + "—" + apparel.getMaxT() + activity.getString(R.string.deg));
+            if (progress > 90) holder.miniLabel.setImageResource(R.drawable.fu);
+            else {
+                if (apparel.getDate_of_buying().equals(apparel.getDate_of_last_wearing()))
+                    holder.miniLabel.setImageResource(R.drawable.ne);
+            }
         }
         convertView.setTag(holder);
         return convertView;
@@ -76,6 +79,7 @@ public final class ListViewAdapter extends ArrayAdapter<Apparel> implements Task
         holder.cover = (ImageView) convertView.findViewById(R.id.cover);
         holder.date = (TextView) convertView.findViewById(R.id.tvAppareldates);
         holder.wearProgress = (ProgressBar) convertView.findViewById(R.id.progressBar);
+        holder.miniLabel = (ImageView) convertView.findViewById(R.id.mini_label);
         return holder;
     }
 
@@ -85,6 +89,7 @@ public final class ListViewAdapter extends ArrayAdapter<Apparel> implements Task
         TextView date;
         TextView styles;
         ImageView cover;
+        ImageView miniLabel;
         ProgressBar wearProgress;
         boolean needInvalidate = false;
     }

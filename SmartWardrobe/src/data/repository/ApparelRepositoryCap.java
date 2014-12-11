@@ -52,7 +52,7 @@ public class ApparelRepositoryCap implements ApparelRepository, Serializable {
 //                list.add(app);
 //            }
 //        }
-//        Collections.sort(list, new Comparator<Apparel>() {
+//        Collections.sort(list, ne Comparator<Apparel>() {
 //            @Override
 //            public int compare(Apparel apparel, Apparel apparel2) {
 //                return apparel2.getWear() - apparel.getWear();
@@ -139,7 +139,7 @@ public class ApparelRepositoryCap implements ApparelRepository, Serializable {
 //        if (catalog.containsKey(app.getCategory()))
 //            catalog.get(app.getCategory()).add(app);
 //        else {
-//            List<Apparel> list = new ArrayList<Apparel>();
+//            List<Apparel> list = ne ArrayList<Apparel>();
 //            list.add(app);
 //            catalog.put(app.getCategory(), list);
 //        }

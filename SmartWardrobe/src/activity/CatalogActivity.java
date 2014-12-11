@@ -51,9 +51,11 @@ public class CatalogActivity extends Activity
         apparels.get(1).setWearProgress(99);
         apparels.add(new Apparel(filePath + "trousers.jpg", "Любимые брюки", "48-52", "Темно-синие", Category.TROUSERS, new HashSet<>(new ArrayList<Style>() {{
             add(Style.HOME);
+            add(Style.PICKNIK);
+            add(Style.THEATRE);
         }}), new LinkedList<String>() {{
             add("Школьные ещё");
-        }}, -1, 25, "25-06-1994", "25-06-1994"));
+        }}, -1, 25, "25-06-1994", "25-07-1994"));
 
         backButton = (Button) findViewById(R.id.btnBack);
         backButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.backspace));

@@ -47,7 +47,7 @@ public enum Style {
     public static String parseToString(HashSet<Style> styles) {
         StringBuilder sb = new StringBuilder();
         for (Style style : styles) {
-            sb.append(style.name());
+            sb.append(style.type);
             sb.append("; ");
         }
         return sb.toString();
