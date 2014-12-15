@@ -9,13 +9,11 @@ import android.widget.*;
 import by.idea.SmartWardrobe.R;
 import constants.Style;
 import data.Apparel;
-import data.DBHelper;
-import interfaces.TaskSuccessListener;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public final class ListViewAdapter extends ArrayAdapter<Apparel> implements TaskSuccessListener {
+public final class ListViewAdapter extends ArrayAdapter<Apparel> {
 
     private ArrayList<Apparel> mObjects;
     private ArrayList<Apparel> mOriginalValues;
@@ -29,7 +27,6 @@ public final class ListViewAdapter extends ArrayAdapter<Apparel> implements Task
         this.activity = activity;
         this.inflater = LayoutInflater.from(activity);
         mObjects = new ArrayList<Apparel>();
-        DBHelper.getInstance(getContext()).getAll(this);
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -92,11 +89,6 @@ public final class ListViewAdapter extends ArrayAdapter<Apparel> implements Task
         ImageView miniLabel;
         ProgressBar wearProgress;
         boolean needInvalidate = false;
-    }
-
-    @Override
-    public void success(ArrayList<Apparel> result) {
-        insertData(result);
     }
 
     private void insertData(ArrayList<Apparel> apparels) {

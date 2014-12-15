@@ -5,10 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
+import android.widget.*;
 import by.idea.SmartWardrobe.R;
 import constants.Category;
 import constants.Constants;
@@ -54,13 +51,28 @@ public class CatalogActivity extends Activity
         }}), new LinkedList<String>() {{
             add("Школьные ещё");
         }}, -1, 25, "25-06-1994", "25-07-1994"));
-
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(by.idea.SmartWardrobe.R.layout.catalog);
+        WardrobeManager.init(this);
+        //TODO delete this section
+        Spinner sp1, sp2, sp3, sp4;
+        sp1 = (Spinner) findViewById(R.id.spinner2);
+        sp2 = (Spinner) findViewById(R.id.spinner3);
+        sp3 = (Spinner) findViewById(R.id.spinner4);
+        sp4 = (Spinner) findViewById(R.id.spinner5);
+        ArrayAdapter<CharSequence> ad1 = ArrayAdapter.createFromResource(this, R.array.n1, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> ad2 = ArrayAdapter.createFromResource(this, R.array.n2, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> ad3 = ArrayAdapter.createFromResource(this, R.array.n3, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> ad4 = ArrayAdapter.createFromResource(this, R.array.n4, android.R.layout.simple_spinner_item);
+        sp1.setAdapter(ad1);
+        sp2.setAdapter(ad2);
+        sp3.setAdapter(ad3);
+        sp4.setAdapter(ad4);
+        //
         if (savedInstanceState != null && !savedInstanceState.getBoolean(mainMenuStateStr, true)) {
             state = categoryMenuState;
             state.setCategory(savedInstanceState.getString(categoryStateStr));
@@ -174,7 +186,7 @@ public class CatalogActivity extends Activity
             showBackButton(true);
             List<Apparel> tempList = WardrobeManager.getInstance().getByCategory(category);
             ListViewAdapter adapter = new ListViewAdapter(CatalogActivity.this, R.layout.listview_item);
-            adapter.addAll(apparels);
+            adapter.addAll(tempList);
             lst.setAdapter(adapter);
         }
     }

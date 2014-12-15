@@ -1,88 +1,217 @@
 package data;
 
+import android.content.Context;
+import constants.Category;
 import data.repository.ApparelRepository;
-import data.repository.ApparelRepositoryCap;
+import interfaces.TaskSuccessListener;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.List;
+import java.util.*;
 
-public class WardrobeManager {
+public class WardrobeManager implements TaskSuccessListener, ApparelRepository {
     public static final String REPO_NAME = "";
-
+    protected Context context;
     private static WardrobeManager instance;
+    private Object lock = new Object();
+    private Map<Category, List<Apparel>> catalog = new HashMap<Category, List<Apparel>>();
+    private List<Apparel> wash = new ArrayList<Apparel>();
+    private List<Apparel> clothes = new ArrayList<Apparel>();
 
-    public static void loadFromFile(ObjectInputStream is) {
-        try {
-            getInstance().repository = (ApparelRepository) is.readObject();
-        } catch (ClassNotFoundException e) {
-            getInstance().repository = new ApparelRepositoryCap();
-            e.printStackTrace();
-        } catch (IOException e) {
-            getInstance().repository = new ApparelRepositoryCap();
-            e.printStackTrace();
-        }
-    }
+    private List<String> targets = new ArrayList<String>();
 
-    public static void saveToFile(ObjectOutputStream os) {
-        try {
-            os.writeObject(getInstance().repository);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static WardrobeManager getInstance() {
+    public static WardrobeManager getInstance(Context context) {
         if (instance == null) {
-            instance = new WardrobeManager();
+            instance = new WardrobeManager(context);
         }
+        instance.context = context;
         return instance;
     }
 
-    private ApparelRepository repository;
-
-    private WardrobeManager() {
-        repository = new ApparelRepositoryCap();
+    public static WardrobeManager getInstance() {
+        if (instance == null)
+            throw new IllegalStateException("Instance is not created yet. Call getInstance(Context).");
+        else return instance;
     }
 
+    public static void init(Context context) {
+        instance = new WardrobeManager(context);
+    }
+
+    private WardrobeManager(Context context) {
+        this.context = context;
+        DBHelper.getInstance(context).getAll(this);
+    }
+
+    @Override
     public List<Apparel> getAll() {
-        return repository.getAll();
+        return clothes;
     }
 
+    @Override
     public List<Apparel> getByCategory(String category) {
-        return repository.getByCategory(category);
+        Category c = Category.getByType(category);
+        if (c == null || !catalog.containsKey(c)) return new ArrayList<Apparel>();
+        return catalog.get(c);
     }
 
-    public Apparel getById(Integer id) {
-        return repository.getById(id);
+    @Override
+    public List<Apparel> getByTarget(String target) {
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel ap : getNotInWash()) {
+            if (ap.getTags().contains(target)) {
+                list.add(ap);
+            }
+        }
+        return list;
     }
 
+    @Override
     public List<Apparel> getDirty() {
-        return repository.getDirty();
+        List<Apparel> list = new ArrayList<Apparel>();
+//        for (Apparel app : clothes) {
+//            if (app.getWear() > WEAR_LEVEL) {
+//                list.add(app);
+//            }
+//        }
+//        Collections.sort(list, ne Comparator<Apparel>() {
+//            @Override
+//            public int compare(Apparel apparel, Apparel apparel2) {
+//                return apparel2.getWear() - apparel.getWear();
+//            }
+//        });
+        return list;
     }
 
-    public List<Apparel> getInWash() {
-        return repository.getInWash();
-    }
-
+    @Override
     public List<Apparel> getNotInWash() {
-        return repository.getNotInWash();
+        List ret = (new ArrayList<Apparel>(clothes));
+        ret.removeAll(wash);
+        return ret;
     }
 
+    @Override
+    public List<Apparel> getInWash() {
+        return wash;
+    }
+
+    @Override
+    public List<Apparel> getTopByTarget(String target) {
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel ap : getByTarget(target)) {
+            if (Category.SWEATER.equals(ap.getCategory()) ||
+                    Category.SHIRT.equals(ap.getCategory()) ||
+                    Category.TSHIRTS.equals(ap.getCategory())) {
+                list.add(ap);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Apparel> getBottomByTarget(String target) {
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel ap : getByTarget(target)) {
+            if (Category.SHOES.equals(ap.getCategory())) {
+                list.add(ap);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Apparel> getMiddleByTarget(String target) {
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel ap : getByTarget(target)) {
+            if (Category.TROUSERS.equals(ap.getCategory())) {
+                list.add(ap);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Apparel> getAccessoriseByTarget(String target) {
+        List<Apparel> list = new ArrayList<Apparel>();
+        for (Apparel ap : getByTarget(target)) {
+            if (Category.ACCESSORIES.equals(ap.getCategory())) {
+                list.add(ap);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public Apparel getById(Integer id) {
+        int index = Collections.binarySearch(clothes, new Apparel(id), new Comparator<Apparel>() {
+            @Override
+            public int compare(Apparel apparel, Apparel apparel2) {
+                return (int) (apparel2.getId() - apparel.getId());
+            }
+        });
+        return clothes.get(index);
+    }
+
+    @Override
     public void addApparel(Apparel app) {
-        repository.addApparel(app);
+//        clothes.add(app);
+//        if (app.getInWash()) {
+//            wash.add(app);
+//        }
+//        if (catalog.containsKey(app.getCategory()))
+//            catalog.get(app.getCategory()).add(app);
+//        else {
+//            List<Apparel> list = ne ArrayList<Apparel>();
+//            list.add(app);
+//            catalog.put(app.getCategory(), list);
+//        }
+
     }
 
+    @Override
     public void deleteApparel(Apparel app) {
-        repository.deleteApparel(app);
+//        if (app.getInWash()) {
+//            wash.remove(app);
+//        }
+//        catalog.get(app.getCategory()).remove(app);
+//        clothes.remove(app);
     }
 
+    @Override
+    public void setWash(Apparel app, boolean flag) {
+//        app.setInWash(flag);
+//        if (flag) {
+//            wash.add(app);
+//        } else {
+//            wash.remove(app);
+//        }
+    }
+
+    @Override
     public List<String> getTargetCategories() {
-        return repository.getTargetCategories();
+        return targets;
     }
 
-    public void setInWash(Apparel app, boolean flag) {
-        repository.setWash(app, flag);
+    @Override
+    public void addTarget(String s) {
+        targets.add(s);
+    }
+
+    @Override
+    public void removeTarget(String s) {
+        targets.remove(s);
+    }
+
+    @Override
+    public void success(final ArrayList<Apparel> result) {
+        synchronized (lock) {
+            clothes.addAll(result);
+        }
+        ArrayList<Apparel>[] arr = new ArrayList[Category.values().length];
+        for (int i = 0; i < arr.length; ++i) {
+            arr[i] = new ArrayList<Apparel>();
+            catalog.put(Category.values()[i], arr[i]);
+        }
+        for (Apparel apparel : clothes) {
+            arr[apparel.getCategory().ordinal()].add(apparel);
+        }
     }
 }

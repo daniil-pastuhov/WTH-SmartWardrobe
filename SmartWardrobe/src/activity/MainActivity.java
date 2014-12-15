@@ -31,25 +31,11 @@ public class MainActivity extends TabActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        try {
-//            writeObject(new ObjectOutputStream(openFileOutput(FILENAMETAG, MODE_PRIVATE)), BitmapFactory.decodeResource(getResources(), R.drawable.ex));
-//        }
-//
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        };
-//        writeFileSD();
         setContentView(by.idea.SmartWardrobe.R.layout.main);
         tvWeather = (TextView) findViewById(by.idea.SmartWardrobe.R.id.tvWeather);
         FetchWeatherTask weatherTask = new FetchWeatherTask(this, tvWeather);
         weatherTask.execute("Minsk", "metric");
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
-//        try {
-//            ObjectInputStream is = new ObjectInputStream(openFileInput(FILENAME));
-//            WardrobeManager.loadFromFile(is);
-//            is.close();
-//        } catch (IOException e) {
-//
         //TODO delete inicializ
         String[] strings1 = {"В унтверситет", "В школу"};
         String[] strings2 = {"Спорт", "В бар"};
